@@ -20,6 +20,10 @@ public class GridMove : MonoBehaviour
 
     [SerializeField] private Vector2 Destination;
     [SerializeField] private float MoveDistance = 0.5f;
+    public Vector2 PlayerInput;
+    public bool isMoving => Destination != (Vector2)transform.position;
+
+
 
     void Start()
     {
@@ -28,13 +32,19 @@ public class GridMove : MonoBehaviour
 
     void Update()
     {
+        PlayerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        Movement();
+    }
+
+
+    private void Movement()
+    {
         transform.position = Vector2.MoveTowards(transform.position, Destination, MoveSpeed * Time.deltaTime);
-        if (Vector2.Distance(Destination, transform.position) <= 0.05f)
-        {
-            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
-                Destination += new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
-            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
-                Destination += new Vector2(0f, Input.GetAxisRaw("Vertical"));
-        }
+        if (isMoving)
+            return;
+        if (Mathf.Abs(PlayerInput.x) == 1f)
+            Destination += new Vector2(PlayerInput.x * MoveDistance, 0f);
+        else if (Mathf.Abs(PlayerInput.y) == 1f)
+            Destination += new Vector2(0f, PlayerInput.y * MoveDistance);
     }
 }

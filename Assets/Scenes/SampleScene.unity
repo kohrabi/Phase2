@@ -252,6 +252,7 @@ MonoBehaviour:
   sprite: {fileID: 1502467932}
   MyRigidbody: {fileID: 1502467934}
   Destination: {x: 0, y: 0}
+  MoveDistance: 0.5
 --- !u!212 &1502467932
 SpriteRenderer:
   m_ObjectHideFlags: 0
