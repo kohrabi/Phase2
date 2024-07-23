@@ -248,9 +248,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RowSize: 0.5
   ColumnSize: 0.5
-  MoveSpeed: 10
+  MoveSpeed: 1
   sprite: {fileID: 1502467932}
-  rigidbody: {fileID: 1502467934}
+  MyRigidbody: {fileID: 1502467934}
+  WaitTime: 0.1
 --- !u!212 &1502467932
 SpriteRenderer:
   m_ObjectHideFlags: 0
