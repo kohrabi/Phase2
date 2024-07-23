@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
@@ -15,51 +16,25 @@ public class GridMove : MonoBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Rigidbody2D MyRigidbody;
 
-    Vector3 moveTarget = Vector3.zero; // Dung Xoa
-    Vector3 moveCurrent = Vector3.zero; // Dung Xoa
-
-    private Vector2 Direction;
 
 
-    //void Start()
-    //{
-    //    Debug.Log(sprite.bounds.size / 2);
-    //    transform.position = new Vector3(sprite.bounds.size.x / 2, sprite.bounds.size.y / 2, 0);
-    //    moveTarget = transform.position;
-    //}
+    [SerializeField] private Vector2 Destination;
+    [SerializeField] private float MoveDistance = 0.5f;
 
-    private bool isMoving = false;
+    void Start()
+    {
+        Destination = transform.position;
+    }
 
     void Update()
     {
-        //Vector3 velocity = Vector3.zero;
-        //float horizontalInput = (Input.GetKeyDown(KeyCode.D) ? 1 : 0) - (Input.GetKeyDown(KeyCode.A) ? 1 : 0);
-        //float verticalInput = (Input.GetKeyDown(KeyCode.W) ? 1 : 0) - (Input.GetKeyDown(KeyCode.S) ? 1 : 0);
-
-        //moveTarget.x += horizontalInput * RowSize * 2;
-        //moveTarget.y += verticalInput * ColumnSize * 2;
-        //rigidbody.MovePosition(moveTarget);
-
-        if (isMoving == false)
+        transform.position = Vector2.MoveTowards(transform.position, Destination, MoveSpeed * Time.deltaTime);
+        if (Vector2.Distance(Destination, transform.position) <= 0.05f)
         {
-            if (Input.GetKeyDown(KeyCode.W))
-                StartCoroutine(Move(Vector2.up));
-            else if (Input.GetKeyDown(KeyCode.S))
-                StartCoroutine(Move(Vector2.down));
-            else if (Input.GetKeyDown(KeyCode.D))
-                StartCoroutine(Move(Vector2.right));
-            else if (Input.GetKeyDown(KeyCode.A))
-                StartCoroutine(Move(Vector2.left));
+            if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
+                Destination += new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+            else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+                Destination += new Vector2(0f, Input.GetAxisRaw("Vertical"));
         }
-    }
-
-    [SerializeField] private float WaitTime = 0.1f;
-
-    private IEnumerator Move(Vector2 direction)
-    {
-        isMoving = true;
-        MyRigidbody.MovePosition(MyRigidbody.position + MoveSpeed * direction);
-        yield return new WaitForSeconds(WaitTime);
-        isMoving = false;
     }
 }
