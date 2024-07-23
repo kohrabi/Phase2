@@ -23,8 +23,6 @@ public class GridMove : MonoBehaviour
     public Vector2 PlayerInput;
     public bool isMoving => Destination != (Vector2)transform.position;
 
-
-
     void Start()
     {
         Destination = transform.position;
