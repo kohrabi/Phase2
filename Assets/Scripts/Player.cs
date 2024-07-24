@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(GridMoveComponent))]
-public class MoveableComponent : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] public float MoveDelay = 0.005f;
     [SerializeField] private Animator animator;

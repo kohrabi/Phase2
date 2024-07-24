@@ -43,7 +43,6 @@ public class ISText : MonoBehaviour
         {
             GameObject boxUp = up.collider.gameObject;
             GameObject boxDown = down.collider.gameObject;
-       
             if (boxUp.GetComponent<AText>() != null && boxDown.GetComponent<BText>() != null)
             {
                 AText aText = boxUp.GetComponent<AText>();
