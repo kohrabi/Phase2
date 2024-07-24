@@ -1,0 +1,897 @@
+fileFormatVersion: 2
+guid: 20520e7c2b5837841bf1f785fd6b3eea
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f3268c876daf4890b6af6cd462063137, type: 3}
+  _reimportOnDependencyChange: 1
+  _pixelsPerUnit: 16
+  _sprites:
+  - name: Baba_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 06a92b79102430543a65f8ec8a5abf4a
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 26
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 94e1d21fe7af07449bb06bdddafc2e93
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 50
+      width: 24
+      height: 24
+    spriteID: f27ec8be0045bf74fb54839a1e5cc6fc
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 50
+      width: 24
+      height: 24
+    spriteID: b7e895feb5c1bf64380e742aa80be760
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 101
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 91845da17f84c2b4691bbf653485d0f7
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 70a00d1962a3fe840b94964fab821f34
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_6
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 151
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 628e63142185eda4e80331c4f758862e
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_7
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 50
+      width: 24
+      height: 24
+    spriteID: b1aea75af5e98b84cb11c1ca7b2942dd
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_8
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 201
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 532f2d4b5daca984f991a5e7117402bc
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_9
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 226
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 10a157979944f4340ab091f1318798f3
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_10
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 6c4d8b5b246df1745a2c48a81b230eb4
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_11
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 50
+      width: 24
+      height: 24
+    spriteID: bd628f4f20c83a0429ec7c746f1b698f
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_12
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 301
+      y: 50
+      width: 24
+      height: 24
+    spriteID: a9ded48a0a3713246b8fc1b634828673
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_13
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 326
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 749453a4d92cfdf47a8f14728e359777
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_14
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 351
+      y: 50
+      width: 24
+      height: 24
+    spriteID: e8c1429f43d93104285ea6a7a917a088
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_15
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 376
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 0e3190f2b834b8740b7bd19b69305734
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_16
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 401
+      y: 50
+      width: 24
+      height: 24
+    spriteID: e12790597731c2e4b9832ac6a4d033b9
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_17
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 426
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 0756142227223f94fb77f100d6b0e6f1
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_18
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 451
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 040c242b7db7c20499ce71a65947b0fa
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_19
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 476
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 662d9552bc27ce74d853e94f3000894f
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_20
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 501
+      y: 50
+      width: 24
+      height: 24
+    spriteID: 5eef33044ca90804792344adcd3a5690
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_21
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 25
+      width: 24
+      height: 24
+    spriteID: edf9dccd692996d4a98457d2ca015f83
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_22
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 26
+      y: 25
+      width: 24
+      height: 24
+    spriteID: eae60f96e00074044846696c3e4a4674
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_23
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 982ed3048c4118747bb7855bd96165d0
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_24
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 25
+      width: 24
+      height: 24
+    spriteID: dd2c595bc17ead043a031a46e761aef7
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_25
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 101
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 68a796a148578274b9cf5ac76c3a14aa
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_26
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 87d782bf97742e247bcd8f6266ee63c7
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_27
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 151
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 2142e12841416204e990da84382f568d
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_28
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 25
+      width: 24
+      height: 24
+    spriteID: be66a87fe9531a4458d1cbe0f8d3f5a1
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_29
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 201
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 5ba3ca4b1f739a84ba5c1e80dfe2255a
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_30
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 226
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 5d5fb0ef2d1974a49b67aa2eddb1592a
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_31
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 8c6f8589fd035e64e9d5538981b51c87
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_32
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 5554cf2d5eac90649b26b241ef8f8365
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_33
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 301
+      y: 25
+      width: 24
+      height: 24
+    spriteID: d6a567067fcd0a244a1cbbb56a16e341
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_34
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 326
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 230d6a0104be8494ea1b57e9ad9d2088
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_35
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 351
+      y: 25
+      width: 24
+      height: 24
+    spriteID: cdb03798412a38c40878b09827fe1d91
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_36
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 376
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 732428f3e5469c940a39cdc161ee013b
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_37
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 401
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 72fe71854b8e8a1479bb8b0b20eff202
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_38
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 426
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 9d954762772b9464a899d21dc83a5ec6
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_39
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 451
+      y: 25
+      width: 24
+      height: 24
+    spriteID: d770a69fdcded3947b9091880dd68309
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_40
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 476
+      y: 25
+      width: 24
+      height: 24
+    spriteID: bb604223627afaf4599940fde9940081
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_41
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 501
+      y: 25
+      width: 24
+      height: 24
+    spriteID: 3a1fd3d05ca75fd48b76859ae87f2b33
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_42
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 291b8c9c58810044e9b14221bc55d06a
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_43
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 26
+      y: 1
+      width: 24
+      height: 23
+    spriteID: b445274907aa67c429a59d4ef5ba1f96
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_44
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 1
+      width: 24
+      height: 23
+    spriteID: db66ba125fa912a499329cbe49eadd88
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_45
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 38fc807173bad40408503da9040fb04b
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_46
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 101
+      y: 1
+      width: 24
+      height: 23
+    spriteID: d9f7bfb530621ec478c1617d6c750f1d
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_47
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 126
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 04672c690c224cc4ab7fbc191fb5665e
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_48
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 151
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 5be9e667ee6f2fd44a8279b4bd285fc7
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_49
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 176
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 57fdc0c7fa5e87147bbbdf0a3e99fddb
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_50
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 201
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 6f252840f68631b48b61d90011bc7539
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_51
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 226
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 2f7eafbc8e9c67a47b6fa91ecaced5e3
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_52
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 251
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 58dbf2eaba754f441a022741c4811df4
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_53
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 276
+      y: 1
+      width: 24
+      height: 23
+    spriteID: e85b4a46e22a95b48b88c4e18dba3eb0
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_54
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 301
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 01eda148ba00dce45bbca64e9d79de5e
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_55
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 326
+      y: 1
+      width: 24
+      height: 23
+    spriteID: f6b222bb6b2c4e74b87b8270f06174da
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_56
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 351
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 6bcecdc002f46d24b9626a834525bbc1
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_57
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 376
+      y: 1
+      width: 24
+      height: 23
+    spriteID: ee21d3dfdf9d6dc41866c8f4feb4566f
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_58
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 401
+      y: 1
+      width: 24
+      height: 23
+    spriteID: a9547e1b14af785439c116a3376714b0
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_59
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 426
+      y: 1
+      width: 24
+      height: 23
+    spriteID: da884e3c3c744504e9bdcbec98102d5f
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_60
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 451
+      y: 1
+      width: 24
+      height: 23
+    spriteID: 0837ff48c83d16f4084210e16ddf6cbd
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_61
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 476
+      y: 1
+      width: 24
+      height: 23
+    spriteID: de11ca5268bbdec40aa0148a729cb8f0
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Baba_62
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 501
+      y: 1
+      width: 24
+      height: 23
+    spriteID: b8024af8692566b4da2554c6a1829749
+    spriteOutline: []
+    tessellationDetail: 0
+  _secondaryTextures: []
+  _artifacts: {instanceID: 0}

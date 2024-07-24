@@ -5,6 +5,8 @@ using UnityEngine;
 public class MoveableComponent : MonoBehaviour
 {
     [SerializeField] public float MoveDelay = 0.005f;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer renderer;
     GridMoveComponent gridMove;
 
     Vector2 moveDir = Vector2.zero;
@@ -35,8 +37,31 @@ public class MoveableComponent : MonoBehaviour
                 horizontalInput = 0;
                 verticalInput = 0;
             }
-            gridMove.TryMove(new Vector3(horizontalInput, verticalInput, 0));
             StartCoroutine(DelayMove());
+            if (gridMove.TryMove(new Vector3(horizontalInput, verticalInput, 0)))
+            {
+
+                if (horizontalInput != 0 || verticalInput != 0)
+                {
+                    if (animator != null)
+                    {
+                        animator.SetFloat("WalkFrame", ((animator.GetFloat("WalkFrame") * 3 + 1)) % 4 / 3);
+                        if (verticalInput == 1)
+                        {
+                            animator.SetFloat("WalkDir", 0.5f);
+                        }
+                        else if (verticalInput == -1)
+                        {
+                            animator.SetFloat("WalkDir", 0f);
+                        }
+                        else
+                        {
+                            animator.SetFloat("WalkDir", 1f);
+                            renderer.flipX = horizontalInput < 0;
+                        }
+                    }
+                }
+            }
         }
     }
 

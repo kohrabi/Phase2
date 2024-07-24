@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 495cabfaac70d6545867101f3ab4f7ba
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: aaa16bfc62c086f4fb45da87b6acf9b1, type: 3}
+  _reimportOnDependencyChange: 1
+  _jsonFile: {fileID: -164016180542632921, guid: 495cabfaac70d6545867101f3ab4f7ba, type: 3}
+  _pixelsPerUnit: 16
+  _customLevelPrefab: {instanceID: 0}
+  _intGridValueColorsVisible: 0
+  _useCompositeCollider: 1
+  _geometryType: 0
+  _createBackgroundColor: 1
+  _createLevelBoundsTrigger: 0
+  _useParallax: 1
+  _intGridValues: []
+  _entities:
+  - _key: Baba
+    _asset: {fileID: 4872373520976664947, guid: e4d7120d64daf65419ed425cc9c98ffb, type: 3}
+  - _key: BabaBox
+    _asset: {fileID: 7381361093392119884, guid: b8a17c09ea03c7641b38b7140b98d000, type: 3}
+  _enumGenerate: 0
+  _enumPath: 
+  _enumNamespace: 
