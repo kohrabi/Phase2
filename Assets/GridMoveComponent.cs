@@ -1,3 +1,4 @@
+
 using System;
 using UnityEngine;
 
@@ -8,11 +9,17 @@ public class GridMoveComponent : MonoBehaviour
     [SerializeField] public float MoveSpeed = 0.32f;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Rigidbody2D rigidbody;
+    [SerializeField] private BoxCollider2D collider;
     public Vector3 Velocity = Vector3.zero;
 
     Vector3 moveTarget = Vector3.zero; // Dung Xoa
     Vector3 movePoint = Vector3.zero; // Dung Xoa
-    RaycastHit2D[] rayHits = new RaycastHit2D[7];
+    //RaycastHit2D[] castResults = new RaycastHit2D[7];
+
+
+    private void Awake()
+    {
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +41,12 @@ public class GridMoveComponent : MonoBehaviour
         Velocity.x *= RowSize * 2;
         Velocity.y *= ColumnSize * 2;
 
-        CollisionHandling(ref Velocity);
+        if (Velocity.x != 0 && Velocity.y != 0)
+        {
+            Velocity.y = 0;
+        }
+
+        //CollisionHandling(ref Velocity);
         Move();
     }
 
@@ -48,15 +60,42 @@ public class GridMoveComponent : MonoBehaviour
 
     private bool CollisionHandling(ref Vector3 velocity)
     {
-        if (rigidbody.Cast(velocity, rayHits, velocity.magnitude) > 0)
+        if (velocity.x == 0 && velocity.y == 0)
+            return true;
+        var hit = Physics2D.OverlapBox(transform.position + velocity, collider.size, 0);
+        if (hit != null)
         {
             bool moveable = true;
-            for (int i = 0; i < rayHits.Length; i++)
+            if (hit.gameObject.TryGetComponent<PushableComponent>(out var push))
             {
-                if (rayHits[i].rigidbody == null)
-                    break;
-                var hit = rayHits[i].rigidbody.gameObject;
-                if (hit.TryGetComponent<PushableComponent>(out var push))
+                if (!push.Push(velocity))
+                {
+                    moveable = false;
+                }
+            }
+            else
+                moveable = false;
+            if (!moveable)
+            {
+                velocity = Vector3.zero;
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        return true;
+        /*
+        int castCount = rigidbody.Cast(velocity.normalized, castResults, velocity.magnitude);
+        if (castCount > 0)
+        {
+            bool moveable = true;
+            for (int i = 0; i < MathF.Min(castCount, castResults.Length); i++)
+            {
+                var hit = castResults[i].rigidbody;
+                if (hit == null) break;
+                if (hit.gameObject.TryGetComponent<PushableComponent>(out var push))
                 {
                     if (!push.Push(velocity))
                     {
@@ -73,25 +112,17 @@ public class GridMoveComponent : MonoBehaviour
             {
                 return true;
             }
+           
         }
-        return true;
+        */
     }
 
     private void Move()
     {
         if (Vector3.Distance(moveTarget, movePoint) <= 0f)
         {
-            if (Mathf.Abs(Math.Sign(Velocity.x)) == 1)
-            {
-                movePoint.x = moveTarget.x + Velocity.x;
-                Velocity = Vector3.zero;
-            }
-            else if (Mathf.Abs(Math.Sign(Velocity.y)) == 1)
-            {
-
-                movePoint.y = moveTarget.y + Velocity.y;
-                Velocity = Vector3.zero;
-            }
+            movePoint = moveTarget + Velocity;
+            Velocity = Vector3.zero;
         }
         moveTarget = Vector3.MoveTowards(moveTarget, movePoint, MoveSpeed * Time.deltaTime);
         rigidbody.MovePosition(moveTarget);
@@ -99,10 +130,12 @@ public class GridMoveComponent : MonoBehaviour
 
     public bool TryMove(Vector3 velocity)
     {
+        if (Vector3.Distance(moveTarget, movePoint) > 0f)
+            return false;
         if (!CollisionHandling(ref velocity))
             return false;
         Velocity = velocity;
-        Move();
+        //Move();
         return true;
     }
 }
