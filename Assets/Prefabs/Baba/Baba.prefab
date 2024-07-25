@@ -104,6 +104,7 @@ MonoBehaviour:
   ColumnSize: 0.5
   MoveSpeed: 7
   Velocity: {x: 0, y: 0, z: 0}
+  MoveTarget: {x: 0, y: 0, z: 0}
 --- !u!61 &3237450673282755687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,7 +160,7 @@ Rigidbody2D:
   m_GameObject: {fileID: 4872373520976664947}
   m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
