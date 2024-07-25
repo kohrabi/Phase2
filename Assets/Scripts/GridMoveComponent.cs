@@ -93,7 +93,6 @@ public class GridMoveComponent : MonoBehaviour
             }
             if (!moveable)
             {
-                Debug.DrawRay(transform.position, Vector3.right, Color.red, 0.2f);
                 velocity = Vector3.zero;
                 return false;
             }
@@ -140,7 +139,6 @@ public class GridMoveComponent : MonoBehaviour
     {
         CanMove = false;
         yield return new WaitForSecondsRealtime(MoveDelay);
-        Debug.Log(CanMove);
         DelayMoveCoroutine = null;
         CanMove = true;
         Moved = false;
