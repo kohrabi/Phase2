@@ -1,0 +1,99 @@
+fileFormatVersion: 2
+guid: ab29b60b94fd5944ebfba2c399c6cead
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f3268c876daf4890b6af6cd462063137, type: 3}
+  _reimportOnDependencyChange: 1
+  _pixelsPerUnit: 16
+  _sprites:
+  - name: Wall_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 51
+      width: 24
+      height: 24
+    spriteID: 248a64e07a6712b4bad3b931bfa9149e
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Wall_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 26
+      y: 51
+      width: 24
+      height: 24
+    spriteID: cf5e73eec77e36d48b5e10169cbb8b7f
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Wall_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 26
+      width: 24
+      height: 24
+    spriteID: aca46a80c2441e44cb5926f7d76a3259
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Wall_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 26
+      y: 26
+      width: 24
+      height: 24
+    spriteID: 991470f4509021c4e8b9413adc506e31
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Wall_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 24
+      height: 24
+    spriteID: 017fa08f022f3e644a2a3000927fd510
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Wall_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 26
+      y: 1
+      width: 24
+      height: 24
+    spriteID: da8a539d4f62b724882df48583a8fe77
+    spriteOutline: []
+    tessellationDetail: 0
+  _secondaryTextures: []
+  _artifacts: {instanceID: 0}

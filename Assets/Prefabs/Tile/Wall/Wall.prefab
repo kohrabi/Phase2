@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 4365833811050339778}
   - component: {fileID: 8273772351302149946}
   m_Layer: 0
-  m_Name: Baba
-  m_TagString: Baba
+  m_Name: Wall
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2086428670, guid: 977e812de0e3a0b4484ef03ddac0b9f3, type: 3}
+  m_Sprite: {fileID: -327493433, guid: 020465da2ce98af4c963115c9aaa6edb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   ColumnSize: 0.5
   MoveSpeed: 7
   Velocity: {x: 0, y: 0, z: 0}
+  MoveTarget: {x: 0, y: 0, z: 0}
 --- !u!61 &3237450673282755687
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186,7 +187,7 @@ Animator:
   m_GameObject: {fileID: 4872373520976664947}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1ce204f84661d224fb046b4457194584, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9ef1263ff99d5ba41a2d297a39c7e238, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

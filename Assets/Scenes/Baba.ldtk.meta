@@ -24,6 +24,18 @@ ScriptedImporter:
     _asset: {fileID: 4872373520976664947, guid: e4d7120d64daf65419ed425cc9c98ffb, type: 3}
   - _key: BabaBox
     _asset: {fileID: 7381361093392119884, guid: b8a17c09ea03c7641b38b7140b98d000, type: 3}
+  - _key: Is
+    _asset: {fileID: 7085452422649330893, guid: 26f54b1c4e8750040b5c0d6d35a7d9f9, type: 3}
+  - _key: YouText
+    _asset: {fileID: 2709672490374930771, guid: 31595d8799deb2a49868555d3658ff29, type: 3}
+  - _key: StopText
+    _asset: {fileID: 2709672490374930771, guid: 4d04f95fa86054c4eaaad896acbdd86b, type: 3}
+  - _key: PushText
+    _asset: {fileID: 2709672490374930771, guid: 9be91e37937f0b04094f0c371cc2663b, type: 3}
+  - _key: Wall
+    _asset: {fileID: 4872373520976664947, guid: e585a74e61349e94c99dc8837f84d676, type: 3}
+  - _key: WallBox
+    _asset: {fileID: 7381361093392119884, guid: dc8af0d4794a2a84a8355b4282bc99d4, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 

@@ -1,56 +1,99 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
+[RequireComponent(typeof(PushableComponent), typeof(GridMoveComponent))]
 public class ISText : MonoBehaviour
 {
-    public float distance;
-    public Transform Left, Right,Up,Down;
+    [SerializeField] public float RowSize = 0.5f;
+    [SerializeField] public float ColumnSize = 0.5f;
+    [SerializeField] private new BoxCollider2D collider;
+
+    GridMoveComponent gridMove;
+    AText prevAText;
+    BText prevBText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gridMove = GetComponent<GridMoveComponent>();   
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void FixedUpdate()
     {
         Check();
     }
-    void Check()
+
+    public void Check()
     {
-        RaycastHit2D left = Physics2D.Raycast(Left.position, Vector2.left,distance);
-        RaycastHit2D right = Physics2D.Raycast(Right.position, Vector2.right, distance);
-        RaycastHit2D up = Physics2D.Raycast(Up.position, Vector2.up, distance);
-        RaycastHit2D down = Physics2D.Raycast(Down.position, Vector2.down, distance);
-        if (left.collider != null && right.collider !=null)
-        {         
-            GameObject boxLeft = left.collider.gameObject;
-            GameObject boxRight = right.collider.gameObject;
-            if (boxLeft.GetComponent<AText>() != null && boxRight.GetComponent<BText>() != null)
-            {
-                AText aText = boxLeft.GetComponent<AText>();
-                BText bText = boxRight.GetComponent<BText>();
-                Debug.Log(aText.text + " is " + bText.text);
-            }
-        }
-        if (up.collider != null && down.collider != null)
+        Collider2D left = 
+            Physics2D.OverlapBox(gridMove.MoveTarget - new Vector3(ColumnSize * 2, 0), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
+        Collider2D right = 
+            Physics2D.OverlapBox(gridMove.MoveTarget + new Vector3(ColumnSize * 2, 0), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
+        Collider2D up = 
+            Physics2D.OverlapBox(gridMove.MoveTarget + new Vector3(0, RowSize * 2), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
+        Collider2D down = 
+            Physics2D.OverlapBox(gridMove.MoveTarget - new Vector3(0, RowSize * 2), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
+
+        Vector2 dir = Vector2.zero;
+        if (left != null && right != null)
         {
-            GameObject boxUp = up.collider.gameObject;
-            GameObject boxDown = down.collider.gameObject;
-            if (boxUp.GetComponent<AText>() != null && boxDown.GetComponent<BText>() != null)
+            if (left.TryGetComponent<AText>(out var leftA) && right.TryGetComponent<BText>(out var rightB))
             {
-                AText aText = boxUp.GetComponent<AText>();
-                BText bText = boxDown.GetComponent<BText>();
-                Debug.Log(aText.text + " is " + bText.text);
+                dir = Vector2.right;
+                if (leftA != prevAText && rightB != prevBText)
+                {
+                    AddComponentToObjects(leftA.text, rightB.ComponentType);
+                    Debug.Log(leftA.text + "is" + rightB.Text);
+                    prevAText = leftA;
+                    prevBText = rightB;
+                }
             }
         }
-       
+        if (up != null && down != null)
+        {
+            if (up.TryGetComponent<AText>(out var upA) && right.TryGetComponent<BText>(out var downB))
+            {
+                dir = Vector2.down;
+                if (upA != prevAText && downB != prevBText)
+                {
+                    AddComponentToObjects(upA.text, downB.ComponentType);
+                    Debug.Log(upA.text + "is" + downB.Text);
+                    prevAText = upA;
+                    prevBText = downB;
+                }
+            }
+        }   
+        // remove old rule
+        if (dir == Vector2.zero && prevAText != null && prevBText != null)
+        {
+            RemoveComponentFromObjects(prevAText.text, prevBText.ComponentType);
+            prevAText = null;
+            prevBText = null;
+        }
+
     }
+
+    void AddComponentToObjects(string tag, Type componentType)
+    {
+        var objects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (var obj in objects)
+        {
+            obj.AddComponent(componentType);
+        }
+    }
+
+    void RemoveComponentFromObjects(string tag, Type componentType)
+    {
+        var objects = GameObject.FindGameObjectsWithTag(prevAText.text);
+        foreach (var obj in objects)
+        {
+            var component = obj.gameObject.GetComponent(prevBText.ComponentType);
+            Destroy(component);
+        }
+    }
+
    
 }

@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 1174023482265050988}
   - component: {fileID: 3435298079919637181}
   - component: {fileID: 6868332492045173894}
-  m_Layer: 0
+  - component: {fileID: -2487547875844802378}
+  m_Layer: 3
   m_Name: BabaBox
-  m_TagString: Untagged
+  m_TagString: RuleBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,3 +214,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2487547875844802378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7381361093392119884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191fa3a34e782ed48a8876099dbde972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Baba

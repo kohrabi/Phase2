@@ -1,19 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PushableComponent))]
 public class BText : MonoBehaviour
 {
-    public string text;
+    public string Text;
+    public string ComponentName;
+    public Type ComponentType;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        ComponentType = Type.GetType(ComponentName);
     }
 }

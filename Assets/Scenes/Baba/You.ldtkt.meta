@@ -1,0 +1,57 @@
+fileFormatVersion: 2
+guid: 0598606a53b5bf644a98fa26aa1c5db9
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f3268c876daf4890b6af6cd462063137, type: 3}
+  _reimportOnDependencyChange: 1
+  _pixelsPerUnit: 16
+  _sprites:
+  - name: You_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 51
+      width: 24
+      height: 24
+    spriteID: 52cb44d1e7e828c4b9fca29c4a7b0b75
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: You_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 26
+      width: 24
+      height: 24
+    spriteID: 463879636b38ea945b74d6f6c0816c1d
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: You_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 24
+      height: 24
+    spriteID: 8525eeab57acfe441bfbafa8223f467d
+    spriteOutline: []
+    tessellationDetail: 0
+  _secondaryTextures: []
+  _artifacts: {instanceID: 0}

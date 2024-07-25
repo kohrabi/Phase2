@@ -1,0 +1,40 @@
+{
+  "Rects": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 24,
+      "h": 24
+    }
+  ],
+  "Def": {
+    "__cHei": 3,
+    "__cWid": 1,
+    "cachedPixelData": {
+      "opaqueTiles": "000",
+      "averageColors": "bfffbfffbfff"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "You",
+    "padding": 1,
+    "pxHei": 76,
+    "pxWid": 26,
+    "relPath": "../Sprites/You.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 1,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 24,
+    "uid": 8
+  }
+}

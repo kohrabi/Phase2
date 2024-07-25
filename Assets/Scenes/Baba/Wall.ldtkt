@@ -1,0 +1,46 @@
+{
+  "Rects": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 24,
+      "h": 24
+    },
+    {
+      "x": 26,
+      "y": 1,
+      "w": 24,
+      "h": 24
+    }
+  ],
+  "Def": {
+    "__cHei": 3,
+    "__cWid": 2,
+    "cachedPixelData": {
+      "opaqueTiles": "000000",
+      "averageColors": "f2234234e2234234f2234234"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "Wall",
+    "padding": 1,
+    "pxHei": 76,
+    "pxWid": 52,
+    "relPath": "../Sprites/Wall.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 1,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 24,
+    "uid": 14
+  }
+}

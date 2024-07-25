@@ -4,9 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(GridMoveComponent))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] public float MoveDelay = 0.005f;
-    [SerializeField] private Animator animator;
-    [SerializeField] private SpriteRenderer renderer;
+    [SerializeField] public float MoveDelay = 0.2f;
+    private Animator animator;
+    private SpriteRenderer renderer;
     GridMoveComponent gridMove;
 
     Vector2 moveDir = Vector2.zero;
@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     void Start()
     {
         gridMove = GetComponent<GridMoveComponent>();
+        if (TryGetComponent<Animator>(out var ani))
+            animator = ani;
+        if (TryGetComponent<SpriteRenderer>(out var ren))
+            renderer = ren;
     }
 
     // Update is called once per frame

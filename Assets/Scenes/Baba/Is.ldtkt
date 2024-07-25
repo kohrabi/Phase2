@@ -1,0 +1,40 @@
+{
+  "Rects": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 24,
+      "h": 24
+    }
+  ],
+  "Def": {
+    "__cHei": 3,
+    "__cWid": 1,
+    "cachedPixelData": {
+      "opaqueTiles": "000",
+      "averageColors": "2fff2fff2fff"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "Is",
+    "padding": 1,
+    "pxHei": 76,
+    "pxWid": 26,
+    "relPath": "../Sprites/Is.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 1,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 24,
+    "uid": 5
+  }
+}

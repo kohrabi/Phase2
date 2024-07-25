@@ -1,0 +1,57 @@
+fileFormatVersion: 2
+guid: e108488343484634db88e01378c44913
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f3268c876daf4890b6af6cd462063137, type: 3}
+  _reimportOnDependencyChange: 1
+  _pixelsPerUnit: 16
+  _sprites:
+  - name: Push_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 51
+      width: 24
+      height: 24
+    spriteID: a85dbef45342baf4fb66ae2482680a4e
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Push_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 26
+      width: 24
+      height: 24
+    spriteID: 707dd08de2463ce48a95f206f4ce7ec1
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Push_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 24
+      height: 24
+    spriteID: 652bad5c2b2526249ae15e1d3ace68f3
+    spriteOutline: []
+    tessellationDetail: 0
+  _secondaryTextures: []
+  _artifacts: {instanceID: 0}
