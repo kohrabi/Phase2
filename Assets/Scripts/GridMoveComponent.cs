@@ -1,14 +1,20 @@
 
 using System;
+using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public class GridMoveComponent : MonoBehaviour
 {
-    [SerializeField] public float RowSize = 0.1f;
-    [SerializeField] public float ColumnSize = 0.1f;
-    [SerializeField] public float MoveSpeed = 0.32f;
+    public const float RowSize = 0.5f;
+    public const float ColumnSize = 0.5f;
+    public const float MoveSpeed = 8f;
+    public const float MoveDelay = 0.2f;
+    public static bool Moved = false;
+    public static bool CanMove = true;
+    public static Coroutine DelayMoveCoroutine = null;
     private new Rigidbody2D rigidbody;
     private new BoxCollider2D collider;
     public Vector3 Velocity = Vector3.zero;
@@ -38,14 +44,18 @@ public class GridMoveComponent : MonoBehaviour
                                Mathf.RoundToInt(Velocity.z));
         Velocity.x *= RowSize * 2;
         Velocity.y *= ColumnSize * 2;
-
-        if (Velocity.x != 0 && Velocity.y != 0)
-        {
-            Velocity.y = 0;
-        }
-
         //CollisionHandling(ref Velocity);
         Move();
+
+    }
+
+    private void LateUpdate()
+    {
+        if (Moved && DelayMoveCoroutine == null)
+        {
+            CanMove = false;
+            DelayMoveCoroutine = StartCoroutine(DelayMove());
+        }
     }
 
     public void OnDrawGizmos()
@@ -73,8 +83,17 @@ public class GridMoveComponent : MonoBehaviour
             }
             else if (hit.gameObject.TryGetComponent<StopComponent>(out var stop))
                 moveable = false;
+            else if (hit.gameObject.TryGetComponent<Player>(out var player))
+            {
+                var tempVel = velocity;
+                if (!player.GridMove.CollisionHandling(ref tempVel))
+                {
+                    moveable = false;
+                }
+            }
             if (!moveable)
             {
+                Debug.DrawRay(transform.position, Vector3.right, Color.red, 0.2f);
                 velocity = Vector3.zero;
                 return false;
             }
@@ -88,6 +107,10 @@ public class GridMoveComponent : MonoBehaviour
 
     private void Move()
     {
+        if (Velocity.x != 0 && Velocity.y != 0)
+        {
+            Velocity.y = 0;
+        }
         if (Vector3.Distance(moveCurr, MoveTarget) <= 0f)
         {
             MoveTarget = moveCurr + Velocity;
@@ -99,12 +122,27 @@ public class GridMoveComponent : MonoBehaviour
 
     public bool TryMove(Vector3 velocity)
     {
+        if (!CanMove)
+            return false;
+        if (velocity == Vector3.zero)
+            return false;
         if (Vector3.Distance(moveCurr, MoveTarget) > 0f)
             return false;
         if (!CollisionHandling(ref velocity))
             return false;
+        Moved = true;
         Velocity = velocity;
-        Move();
+        //Move();
         return true;
+    }
+
+    IEnumerator DelayMove()
+    {
+        CanMove = false;
+        yield return new WaitForSecondsRealtime(MoveDelay);
+        Debug.Log(CanMove);
+        DelayMoveCoroutine = null;
+        CanMove = true;
+        Moved = false;
     }
 }

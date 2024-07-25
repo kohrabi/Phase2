@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RowSize: 0.5
   ColumnSize: 0.5
-  MoveSpeed: 7
+  MoveSpeed: 10
   Velocity: {x: 0, y: 0, z: 0}
   MoveTarget: {x: 0, y: 0, z: 0}
 --- !u!61 &3237450673282755687
