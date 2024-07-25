@@ -43,10 +43,11 @@ public class ISText : MonoBehaviour
             if (left.TryGetComponent<AText>(out var leftA) && right.TryGetComponent<BText>(out var rightB))
             {
                 dir = Vector2.right;
-                if (leftA != prevAText && rightB != prevBText)
+                if (leftA != prevAText || rightB != prevBText)
                 {
                     AddComponentToObjects(leftA.text, rightB.ComponentType);
                     Debug.Log(leftA.text + "is" + rightB.Text);
+                    if (prevAText != null && prevBText != null) RemoveComponentFromObjects(prevAText.text, prevBText.ComponentType);
                     prevAText = leftA;
                     prevBText = rightB;
                 }
@@ -54,13 +55,14 @@ public class ISText : MonoBehaviour
         }
         if (up != null && down != null)
         {
-            if (up.TryGetComponent<AText>(out var upA) && right.TryGetComponent<BText>(out var downB))
+            if (up.TryGetComponent<AText>(out var upA) && down.TryGetComponent<BText>(out var downB))
             {
                 dir = Vector2.down;
-                if (upA != prevAText && downB != prevBText)
+                if (upA != prevAText || downB != prevBText)
                 {
                     AddComponentToObjects(upA.text, downB.ComponentType);
                     Debug.Log(upA.text + "is" + downB.Text);
+                    if (prevAText != null && prevBText != null) RemoveComponentFromObjects(prevAText.text, prevBText.ComponentType);
                     prevAText = upA;
                     prevBText = downB;
                 }
