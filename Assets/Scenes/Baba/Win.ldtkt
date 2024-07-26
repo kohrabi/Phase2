@@ -1,0 +1,40 @@
+{
+  "Rects": [
+    {
+      "x": 1,
+      "y": 1,
+      "w": 24,
+      "h": 24
+    }
+  ],
+  "Def": {
+    "__cHei": 3,
+    "__cWid": 1,
+    "cachedPixelData": {
+      "opaqueTiles": "000",
+      "averageColors": "bed8bed8aed8"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "Win",
+    "padding": 1,
+    "pxHei": 76,
+    "pxWid": 26,
+    "relPath": "../Sprites/Win.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 1,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 24,
+    "uid": 23
+  }
+}

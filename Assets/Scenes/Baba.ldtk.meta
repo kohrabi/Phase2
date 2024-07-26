@@ -36,6 +36,16 @@ ScriptedImporter:
     _asset: {fileID: 4872373520976664947, guid: e585a74e61349e94c99dc8837f84d676, type: 3}
   - _key: WallBox
     _asset: {fileID: 7381361093392119884, guid: dc8af0d4794a2a84a8355b4282bc99d4, type: 3}
+  - _key: FlagBox
+    _asset: {fileID: 7381361093392119884, guid: 9860c011844a16440b250d5b88ec4785, type: 3}
+  - _key: Flag
+    _asset: {fileID: 4872373520976664947, guid: 48daa14c13a9dd94a9f9b48c8141ee32, type: 3}
+  - _key: Rock
+    _asset: {fileID: 4872373520976664947, guid: be738f6dfd1ca2949ba18d0ac9f5ec94, type: 3}
+  - _key: RockBox
+    _asset: {fileID: 7381361093392119884, guid: 8c2338618c5efa144ae5f870c4a08413, type: 3}
+  - _key: WinText
+    _asset: {fileID: 2709672490374930771, guid: e4cc49533e59c2543a2b442f87687ae7, type: 3}
   _enumGenerate: 0
   _enumPath: 
   _enumNamespace: 

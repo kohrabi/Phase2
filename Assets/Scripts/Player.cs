@@ -44,16 +44,23 @@ public class Player : MonoBehaviour
                     animator.SetFloat("WalkFrame", ((animator.GetFloat("WalkFrame") * 3 + 1)) % 4 / 3);
                     if (verticalInput == 1)
                     {
-                        animator.SetFloat("WalkDir", 0.5f);
+                        // Up
+                        animator.SetFloat("WalkDir", 0f);
                     }
                     else if (verticalInput == -1)
                     {
-                        animator.SetFloat("WalkDir", 0f);
+                        // Down
+                        animator.SetFloat("WalkDir", 0.25f);
                     }
-                    else
+                    else if (horizontalInput == -1)
                     {
+                        // Left
+                        animator.SetFloat("WalkDir", 0.75f);
+                    }
+                    else if (horizontalInput == 1)
+                    {
+                        // Right
                         animator.SetFloat("WalkDir", 1f);
-                        renderer.flipX = horizontalInput < 0;
                     }
                     animator.logWarnings = true;
                 }

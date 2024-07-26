@@ -1,0 +1,46 @@
+{
+  "Rects": [
+    {
+      "x": 26,
+      "y": 1,
+      "w": 24,
+      "h": 24
+    },
+    {
+      "x": 1,
+      "y": 1,
+      "w": 24,
+      "h": 24
+    }
+  ],
+  "Def": {
+    "__cHei": 3,
+    "__cWid": 2,
+    "cachedPixelData": {
+      "opaqueTiles": "000000",
+      "averageColors": "5864aa846864aa846864aa84"
+    },
+    "customData": [
+
+    ],
+    "embedAtlas": null,
+    "enumTags": [
+
+    ],
+    "identifier": "Rock",
+    "padding": 1,
+    "pxHei": 76,
+    "pxWid": 51,
+    "relPath": "../Sprites/Rock.png",
+    "savedSelections": [
+
+    ],
+    "spacing": 1,
+    "tags": [
+
+    ],
+    "tagsSourceEnumUid": null,
+    "tileGridSize": 24,
+    "uid": 17
+  }
+}

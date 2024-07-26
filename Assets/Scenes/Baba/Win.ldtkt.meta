@@ -1,0 +1,57 @@
+fileFormatVersion: 2
+guid: 4d6527d5cf87e2846b7ba4490e45bb27
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: f3268c876daf4890b6af6cd462063137, type: 3}
+  _reimportOnDependencyChange: 1
+  _pixelsPerUnit: 16
+  _sprites:
+  - name: Win_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 51
+      width: 24
+      height: 24
+    spriteID: 842c4e680576c7343929ab3952b9c6ff
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Win_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 26
+      width: 24
+      height: 24
+    spriteID: 0b8aad8d5c6e7bc43b79b75458a0afc1
+    spriteOutline: []
+    tessellationDetail: 0
+  - name: Win_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 1
+      y: 1
+      width: 24
+      height: 24
+    spriteID: 99db50cd7371f5e4b8b8a42dec2f9b3b
+    spriteOutline: []
+    tessellationDetail: 0
+  _secondaryTextures: []
+  _artifacts: {instanceID: 0}

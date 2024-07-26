@@ -7,6 +7,8 @@ TagManager:
   - RuleBox
   - Baba
   - Wall
+  - Flag
+  - Rock
   layers:
   - Default
   - TransparentFX

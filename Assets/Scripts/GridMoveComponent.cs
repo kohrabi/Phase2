@@ -70,25 +70,36 @@ public class GridMoveComponent : MonoBehaviour
     {
         if (velocity.x == 0 && velocity.y == 0)
             return true;
-        var hit = Physics2D.OverlapBox(transform.position + velocity, collider.bounds.size, 0);
-        if (hit != null)
+        Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position + velocity, collider.bounds.size, 0);
+        if (hits != null && hits.Length > 0)
         {
             bool moveable = true;
-            if (hit.gameObject.TryGetComponent<PushableComponent>(out var push))
+            for (int i = 0; i < hits.Length; i++)
             {
-                if (!push.Push(velocity))
+                var hit = hits[i];
+                if (hit == null)
+                    break;
+                if (hit.gameObject.TryGetComponent<PushableComponent>(out var push))
                 {
-                    moveable = false;
+                    if (!push.Push(velocity))
+                    {
+                        moveable = false;
+                        break;
+                    }
                 }
-            }
-            else if (hit.gameObject.TryGetComponent<StopComponent>(out var stop))
-                moveable = false;
-            else if (hit.gameObject.TryGetComponent<Player>(out var player))
-            {
-                var tempVel = velocity;
-                if (!player.GridMove.CollisionHandling(ref tempVel))
+                else if (hit.gameObject.TryGetComponent<StopComponent>(out var stop))
                 {
                     moveable = false;
+                    break;
+                }
+                else if (hit.gameObject.TryGetComponent<Player>(out var player))
+                {
+                    var tempVel = velocity;
+                    if (!player.GridMove.CollisionHandling(ref tempVel))
+                    {
+                        moveable = false;
+                        break;
+                    }
                 }
             }
             if (!moveable)
