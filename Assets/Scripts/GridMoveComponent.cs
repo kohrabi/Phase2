@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D), typeof(Animator))]
 public class GridMoveComponent : MonoBehaviour
 {
     public const float RowSize = 0.5f;
@@ -16,6 +16,7 @@ public class GridMoveComponent : MonoBehaviour
     public static bool CanMove = true;
     public static Coroutine DelayMoveCoroutine = null;
     private new Rigidbody2D rigidbody;
+    private Animator animator;
     private new BoxCollider2D collider;
     public Vector3 Velocity = Vector3.zero;
 
@@ -33,6 +34,7 @@ public class GridMoveComponent : MonoBehaviour
         moveCurr = transform.position;
         MoveTarget = transform.position;
         rigidbody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         collider = GetComponent<BoxCollider2D>();
     }
 
@@ -54,6 +56,7 @@ public class GridMoveComponent : MonoBehaviour
         if (Moved && DelayMoveCoroutine == null)
         {
             CanMove = false;
+            UndoManager.Instance.NextTurn();
             DelayMoveCoroutine = StartCoroutine(DelayMove());
         }
     }
@@ -92,15 +95,15 @@ public class GridMoveComponent : MonoBehaviour
                     moveable = false;
                     break;
                 }
-                else if (hit.gameObject.TryGetComponent<Player>(out var player))
-                {
-                    var tempVel = velocity;
-                    if (!player.GridMove.CollisionHandling(ref tempVel))
-                    {
-                        moveable = false;
-                        break;
-                    }
-                }
+                //else if (hit.gameObject.TryGetComponent<Player>(out var player))
+                //{
+                //    var tempVel = velocity;
+                //    if (!player.GridMove.CollisionHandling(ref tempVel))
+                //    {
+                //        moveable = false;
+                //        break;
+                //    }
+                //}
             }
             if (!moveable)
             {
@@ -141,9 +144,51 @@ public class GridMoveComponent : MonoBehaviour
         if (!CollisionHandling(ref velocity))
             return false;
         Moved = true;
+        if (Velocity != velocity)
+            UndoManager.Instance.AddToCurrentUndo(gameObject, transform.position);
         Velocity = velocity;
+        // Animate
+        HandleAnimation(velocity);
         //Move();
         return true;
+    }
+
+    void HandleAnimation(Vector3 velocity, bool inverted = false)
+    {
+        if (animator != null)
+        {
+            animator.logWarnings = false;
+            velocity.x = Math.Sign(velocity.x);
+            velocity.y = Math.Sign(velocity.y);
+            animator.SetFloat("WalkFrame", ((animator.GetFloat("WalkFrame") * 3 + 1)) % 4 / 3);
+            if (velocity.y == 1)
+            {
+                // Up
+                animator.SetFloat("WalkDir", inverted ? 0.25f : 0f);
+            }
+            else if (velocity.y == -1)
+            {
+                // Down
+                animator.SetFloat("WalkDir", inverted ? 0f : 0.25f);
+            }
+            else if (velocity.x == -1)
+            {
+                // Left
+                animator.SetFloat("WalkDir", inverted ? 1f : 0.75f);
+            }
+            else if (velocity.x == 1)
+            {
+                // Right
+                animator.SetFloat("WalkDir", inverted ? 0.75f : 1f);
+            }
+            animator.logWarnings = true;
+        }
+    }
+
+    public void UndoMove(Vector3 velocity)
+    {
+        Velocity = velocity;
+        HandleAnimation(velocity, true);
     }
 
     IEnumerator DelayMove()

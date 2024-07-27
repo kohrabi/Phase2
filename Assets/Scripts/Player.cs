@@ -33,39 +33,7 @@ public class Player : MonoBehaviour
             horizontalInput = 0;
             verticalInput = 0;
         }
-        if (GridMove.TryMove(new Vector3(horizontalInput, verticalInput, 0)))
-        {
-
-            if (horizontalInput != 0 || verticalInput != 0)
-            {
-                if (animator != null)
-                {
-                    animator.logWarnings = false;
-                    animator.SetFloat("WalkFrame", ((animator.GetFloat("WalkFrame") * 3 + 1)) % 4 / 3);
-                    if (verticalInput == 1)
-                    {
-                        // Up
-                        animator.SetFloat("WalkDir", 0f);
-                    }
-                    else if (verticalInput == -1)
-                    {
-                        // Down
-                        animator.SetFloat("WalkDir", 0.25f);
-                    }
-                    else if (horizontalInput == -1)
-                    {
-                        // Left
-                        animator.SetFloat("WalkDir", 0.75f);
-                    }
-                    else if (horizontalInput == 1)
-                    {
-                        // Right
-                        animator.SetFloat("WalkDir", 1f);
-                    }
-                    animator.logWarnings = true;
-                }
-            }
-        }
+        GridMove.TryMove(new Vector3(horizontalInput, verticalInput, 0));
     }
 
     private void FixedUpdate()
