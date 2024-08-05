@@ -13,8 +13,10 @@ public class ISText : MonoBehaviour
     [SerializeField] private new BoxCollider2D collider;
 
     GridMoveComponent gridMove;
-    AText prevAText;
-    BText prevBText;
+    INameText prevLeftAText;
+    INameText prevRightBText;
+    INameText prevUpAText;
+    INameText prevDownBText;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,13 +45,33 @@ public class ISText : MonoBehaviour
             if (left.TryGetComponent<AText>(out var leftA) && right.TryGetComponent<BText>(out var rightB))
             {
                 dir = Vector2.right;
-                if (leftA != prevAText || rightB != prevBText)
+                if (leftA != (AText)prevLeftAText || (prevRightBText.GetType() == rightB.GetType() && (BText)prevRightBText != rightB))
                 {
-                    AddComponentToObjects(leftA.text, rightB.ComponentType);
-                    Debug.Log(leftA.text + "is" + rightB.Text);
-                    if (prevAText != null && prevBText != null) RemoveComponentFromObjects(prevAText.text, prevBText.ComponentType);
-                    prevAText = leftA;
-                    prevBText = rightB;
+                    AddComponentToObjects(leftA.Text, rightB.ComponentType);
+                    Debug.Log(leftA.Text + " is " + rightB.Text);
+                    if (prevLeftAText != null && prevRightBText != null)
+                    {
+                        if (prevRightBText.GetType() == typeof(BText))
+                            RemoveComponentFromObjects(((AText)prevLeftAText).Text, ((BText)prevRightBText).ComponentType);
+                    }
+                    prevLeftAText = leftA;
+                    prevRightBText = rightB;
+                }
+            }
+            if (left.TryGetComponent<AText>(out leftA) && right.TryGetComponent<AText>(out var rightA))
+            {
+                dir = Vector2.right;
+                if (leftA != (AText)prevLeftAText || (prevRightBText.GetType() == rightA.GetType() && (AText)prevRightBText != rightA))
+                {
+                    ReplaceObjectsWithObject(leftA.Text, rightA.Text);
+                    Debug.Log(leftA.Text + "is" + rightA.Text);
+                    if (prevLeftAText != null && prevRightBText != null)
+                    {
+                        if (prevRightBText.GetType() == typeof(BText))
+                            RemoveComponentFromObjects(((AText)prevLeftAText).Text, ((BText)prevRightBText).ComponentType);
+                    }
+                    prevLeftAText = leftA;
+                    prevRightBText = rightA;
                 }
             }
         }
@@ -58,22 +80,53 @@ public class ISText : MonoBehaviour
             if (up.TryGetComponent<AText>(out var upA) && down.TryGetComponent<BText>(out var downB))
             {
                 dir = Vector2.down;
-                if (upA != prevAText || downB != prevBText)
+                if (upA != (AText)prevUpAText || (prevDownBText.GetType() == downB.GetType() && (BText)prevDownBText != downB))
                 {
-                    AddComponentToObjects(upA.text, downB.ComponentType);
-                    Debug.Log(upA.text + "is" + downB.Text);
-                    if (prevAText != null && prevBText != null) RemoveComponentFromObjects(prevAText.text, prevBText.ComponentType);
-                    prevAText = upA;
-                    prevBText = downB;
+                    AddComponentToObjects(upA.Text, downB.ComponentType);
+                    Debug.Log(upA.Text + " is " + downB.Text);
+                    if (prevUpAText != null && prevDownBText != null)
+                    {
+                        if (prevDownBText.GetType() == typeof(BText))
+                            RemoveComponentFromObjects(((AText)prevUpAText).Text, ((BText)prevDownBText).ComponentType);
+                    }
+                    prevUpAText = upA;
+                    prevDownBText = downB;
+                }
+            }
+            if (left.TryGetComponent<AText>(out upA) && right.TryGetComponent<AText>(out var downA))
+            {
+                dir = Vector2.right;
+                if (upA != (AText)prevUpAText || (prevDownBText.GetType() == downA.GetType() && (AText)prevDownBText != downA))
+                {
+                    ReplaceObjectsWithObject(upA.Text, downA.Text);
+                    Debug.Log(upA.Text + " is " + downA.Text);
+                    if (prevUpAText != null && prevDownBText != null)
+                    {
+                        if (prevDownBText.GetType() == typeof(BText))
+                            RemoveComponentFromObjects(((AText)prevUpAText).Text, ((BText)prevDownBText).ComponentType);
+                    }
+                    prevUpAText = upA;
+                    prevDownBText = downA;
                 }
             }
         }   
         // remove old rule
-        if (dir == Vector2.zero && prevAText != null && prevBText != null)
+        if (dir == Vector2.zero)
         {
-            RemoveComponentFromObjects(prevAText.text, prevBText.ComponentType);
-            prevAText = null;
-            prevBText = null;
+            if (prevLeftAText != null && prevRightBText != null)
+            {
+                if (prevRightBText.GetType() == typeof(BText))
+                    RemoveComponentFromObjects(((AText)prevLeftAText).Text, ((BText)prevRightBText).ComponentType);
+                prevLeftAText = null;
+                prevRightBText = null;
+            }
+            if (prevUpAText != null && prevDownBText != null)
+            {
+                if (prevDownBText.GetType() == typeof(BText))
+                    RemoveComponentFromObjects(((AText)prevUpAText).Text, ((BText)prevDownBText).ComponentType);
+                prevUpAText = null;
+                prevDownBText = null;
+            }
         }
 
     }
@@ -87,12 +140,29 @@ public class ISText : MonoBehaviour
         }
     }
 
+    void ReplaceObjectsWithObject(string tagobjs, string tagobj)
+    {
+        var objs = GameObject.FindGameObjectsWithTag(tagobjs);
+        var replaceObj = GameObject.FindGameObjectWithTag(tagobj);
+        foreach (var obj in objs)
+        {
+            var newObj = Instantiate(replaceObj, replaceObj.transform.parent);
+            newObj.transform.position = obj.transform.position;
+            if (newObj.TryGetComponent<GridMoveComponent>(out var grid))
+            {
+                grid.SetPosition(obj.transform.position);
+            }
+            obj.SetActive(false);
+            UndoManager.Instance.AddToCurrentUndo(newObj, Vector3.zero, true, obj);
+        }
+    }
+
     void RemoveComponentFromObjects(string tag, Type componentType)
     {
-        var objects = GameObject.FindGameObjectsWithTag(prevAText.text);
+        var objects = GameObject.FindGameObjectsWithTag(tag);
         foreach (var obj in objects)
         {
-            var component = obj.gameObject.GetComponent(prevBText.ComponentType);
+            var component = obj.gameObject.GetComponent(componentType);
             Destroy(component);
         }
     }

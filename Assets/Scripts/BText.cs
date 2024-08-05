@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PushableComponent))]
-public class BText : MonoBehaviour
+public class BText : MonoBehaviour, INameText
 {
     public string Text;
     public string ComponentName;

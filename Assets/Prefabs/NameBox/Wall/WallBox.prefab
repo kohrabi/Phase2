@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RowSize: 0.5
   ColumnSize: 0.5
-  text: Wall
+  Text: Wall
 --- !u!114 &1174023482265050988
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -675,6 +675,22 @@
 					"fieldInstances": [],
 					"__worldX": 296,
 					"__worldY": 168
+				},
+				{
+					"__identifier": "RockBox",
+					"__grid": [16,15],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Name"],
+					"__tile": { "tilesetUid": 17, "x": 1, "y": 1, "w": 24, "h": 24 },
+					"__smartColor": "#F77622",
+					"iid": "35ed9070-4ce0-11ef-a9ba-6338e27f25ec",
+					"width": 16,
+					"height": 16,
+					"defUid": 22,
+					"px": [264,248],
+					"fieldInstances": [],
+					"__worldX": 232,
+					"__worldY": 232
 				}
 			]
 		}

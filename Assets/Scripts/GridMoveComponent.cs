@@ -19,6 +19,7 @@ public class GridMoveComponent : MonoBehaviour
     private Animator animator;
     private new BoxCollider2D collider;
     public Vector3 Velocity = Vector3.zero;
+    bool undoing = false;
 
     Vector3 moveCurr = Vector3.zero; // Dung Xoa
     public Vector3 MoveTarget = Vector3.zero; // Dung Xoa
@@ -56,7 +57,7 @@ public class GridMoveComponent : MonoBehaviour
         if (Moved && DelayMoveCoroutine == null)
         {
             CanMove = false;
-            UndoManager.Instance.NextTurn();
+            // Waiting till next turn
             DelayMoveCoroutine = StartCoroutine(DelayMove());
         }
     }
@@ -188,13 +189,24 @@ public class GridMoveComponent : MonoBehaviour
     public void UndoMove(Vector3 velocity)
     {
         Velocity = velocity;
+        Moved = true;
+        undoing = true;
         HandleAnimation(velocity, true);
     }
 
+    public void SetPosition(Vector3 position)
+    {
+        moveCurr = position;
+        MoveTarget = position;
+        transform.position = position;
+    }
     IEnumerator DelayMove()
     {
         CanMove = false;
         yield return new WaitForSecondsRealtime(MoveDelay);
+        if (!undoing)
+            UndoManager.Instance.NextTurn();
+        undoing = false;
         DelayMoveCoroutine = null;
         CanMove = true;
         Moved = false;

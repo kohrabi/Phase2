@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RowSize: 0.5
   ColumnSize: 0.5
-  text: Flag
+  Text: Flag
 --- !u!212 &1758060216454114795
 SpriteRenderer:
   m_ObjectHideFlags: 0

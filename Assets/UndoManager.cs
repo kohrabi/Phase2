@@ -8,12 +8,15 @@ public class UndoType
 {
     public GameObject TargetObject;
     public Vector3 PrevPosition;
+    public bool DidReplaceObject = false;
+    public GameObject OldReplaceObjects = null;
 
-
-    public UndoType(GameObject targetObject, Vector3 prevPosition)
+    public UndoType(GameObject targetObject, Vector3 prevPosition, bool didReplace = false, GameObject oldReplaceObj = null)
     {
         this.TargetObject = targetObject;
         this.PrevPosition = prevPosition;
+        this.DidReplaceObject = didReplace;
+        this.OldReplaceObjects = oldReplaceObj;
     }
 }
 
@@ -48,13 +51,16 @@ public class UndoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        Debug.Log(undoObjects.Count);
+        if (Input.GetKey(KeyCode.Z))
             Undo();
     }
 
     void Undo()
     {
         if (undoObjects.Count <= 0)
+            return;
+        if (!GridMoveComponent.CanMove)
             return;
         // Undo next turn which is empty 
         if (undoObjects.Count > 1)
@@ -65,6 +71,12 @@ public class UndoManager : MonoBehaviour
             // Todo disable object not destroy it
             if (undoObj.TargetObject == null)
                 continue;
+            if (undoObj.DidReplaceObject)
+            {
+                undoObj.OldReplaceObjects.SetActive(true);
+                Destroy(undoObj.TargetObject);
+                continue;
+            }
             if (undoObj.TargetObject.TryGetComponent<GridMoveComponent>(out var grid))
                 grid.UndoMove(undoObj.PrevPosition - undoObj.TargetObject.transform.position);
         }
@@ -78,11 +90,11 @@ public class UndoManager : MonoBehaviour
         undoObjects.Push(new List<UndoType>());
     }
 
-    public void AddToCurrentUndo(GameObject obj, Vector3 pos)
+    public void AddToCurrentUndo(GameObject obj, Vector3 pos, bool didReplace = false, GameObject oldReplaceObj = null)
     {
         if (undoObjects.Count <= 0)
             NextTurn();
-        undoObjects.Peek().Add(new UndoType(obj, pos));
+        undoObjects.Peek().Add(new UndoType(obj, pos, didReplace, oldReplaceObj));
     }
 
 }
