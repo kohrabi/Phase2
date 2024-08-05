@@ -691,6 +691,54 @@
 					"fieldInstances": [],
 					"__worldX": 232,
 					"__worldY": 232
+				},
+				{
+					"__identifier": "WallBox",
+					"__grid": [27,8],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Name"],
+					"__tile": { "tilesetUid": 14, "x": 26, "y": 1, "w": 24, "h": 24 },
+					"__smartColor": "#FEAE34",
+					"iid": "bbcf6cc0-4ce0-11ef-a490-698040dbf691",
+					"width": 16,
+					"height": 16,
+					"defUid": 15,
+					"px": [440,136],
+					"fieldInstances": [],
+					"__worldX": 408,
+					"__worldY": 120
+				},
+				{
+					"__identifier": "Is",
+					"__grid": [27,9],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Is"],
+					"__tile": { "tilesetUid": 5, "x": 1, "y": 1, "w": 24, "h": 24 },
+					"__smartColor": "#BE4A2F",
+					"iid": "bcfcc930-4ce0-11ef-a490-13b326beafff",
+					"width": 16,
+					"height": 16,
+					"defUid": 9,
+					"px": [440,152],
+					"fieldInstances": [],
+					"__worldX": 408,
+					"__worldY": 136
+				},
+				{
+					"__identifier": "PushText",
+					"__grid": [27,10],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Rule"],
+					"__tile": { "tilesetUid": 6, "x": 1, "y": 1, "w": 24, "h": 24 },
+					"__smartColor": "#733E39",
+					"iid": "bf6a1fb0-4ce0-11ef-a490-b709d81f7267",
+					"width": 16,
+					"height": 16,
+					"defUid": 12,
+					"px": [440,168],
+					"fieldInstances": [],
+					"__worldX": 408,
+					"__worldY": 152
 				}
 			]
 		}
