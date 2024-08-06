@@ -40,92 +40,18 @@ public class ISText : MonoBehaviour
         Collider2D down = 
             Physics2D.OverlapBox(gridMove.MoveTarget - new Vector3(0, RowSize * 2), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
 
-        Vector2 dir = Vector2.zero;
-
-        CheckRule(left, right, ref dir, ref prevLeftAText, ref prevRightBText);
-        CheckRule(up, down, ref dir, ref prevUpAText, ref prevDownBText);
-        /*
-        if (up != null && down != null)
-        {
-            if (up.TryGetComponent<AText>(out var upA) && down.TryGetComponent<BText>(out var downB))
-            {
-                dir = Vector2.down;
-
-                var upObj = GameObject.FindGameObjectWithTag(upA.Text);
-                //if ()
-                if ((upObj != null && !upObj.TryGetComponent(downB.ComponentType, out var trash)) || 
-                    upA != (AText)prevUpAText ||
-                    prevDownBText.GetType() != downB.GetType() ||
-                    (prevDownBText.GetType() == downB.GetType() && ((BText)prevDownBText).Text != downB.Text))
-                {
-                    AddComponentToObjects(upA.Text, downB.ComponentType);
-                    Debug.Log(upA.Text + " is " + downB.Text);
-                    if (prevUpAText != null && prevDownBText != null)
-                    {
-                        if (prevDownBText.GetType() == typeof(BText))
-                        {
-                            RemoveComponentFromObjects(((AText)prevUpAText).Text, ((BText)prevDownBText).ComponentType);
-                        }
-                    }
-                    prevUpAText = upA;
-                    prevDownBText = downB;
-                }
-            }
-            else if (left.TryGetComponent<AText>(out upA) && right.TryGetComponent<AText>(out var downA))
-            {
-                dir = Vector2.right;
-                if (upA != (AText)prevUpAText ||
-                    prevDownBText.GetType() != downA.GetType() ||
-                    (prevDownBText.GetType() == downA.GetType() && ((AText)prevDownBText).Text != downA.Text))
-                {
-                    ReplaceObjectsWithObject(upA.Text, downA.Text);
-                    Debug.Log(upA.Text + " is " + downA.Text);
-                    if (prevUpAText != null && prevDownBText != null)
-                    {
-                        if (prevDownBText.GetType() == typeof(BText))
-                        {
-                            RemoveComponentFromObjects(((AText)prevUpAText).Text, ((BText)prevDownBText).ComponentType);
-                        }
-                    }
-                    prevUpAText = upA;
-                    prevDownBText = downA;
-                }
-            }
-        }   
-        */
-        
-        // remove old rule
-        if (dir == Vector2.zero)
-        {
-            if (prevLeftAText != null && prevRightBText != null)
-            {
-                if (prevRightBText.GetType() == typeof(BText))
-                {
-                    RemoveComponentFromObjects(((AText)prevLeftAText).Text, ((BText)prevRightBText).ComponentType);
-                }
-                prevLeftAText = null;
-                prevRightBText = null;
-            }
-            if (prevUpAText != null && prevDownBText != null)
-            {
-                if (prevDownBText.GetType() == typeof(BText))
-                {
-                    RemoveComponentFromObjects(((AText)prevUpAText).Text, ((BText)prevDownBText).ComponentType);
-                }
-                prevUpAText = null;
-                prevDownBText = null;
-            }
-        }
-
+        CheckRule(left, right, ref prevLeftAText, ref prevRightBText);
+        CheckRule(up, down, ref prevUpAText, ref prevDownBText);
     }
 
-    void CheckRule(Collider2D left, Collider2D right, ref Vector2 dir, ref INameText prevAText, ref INameText prevBText)
+    void CheckRule(Collider2D left, Collider2D right, ref INameText prevAText, ref INameText prevBText)
     {
+        bool ran = false;
         if (left != null && right != null)
         {
             if (left.TryGetComponent<AText>(out var leftA) && right.TryGetComponent<BText>(out var rightB))
             {
-                dir = Vector2.right;
+                ran = true;
                 var leftObj = GameObject.FindGameObjectWithTag(leftA.Text);
                 //if (leftA.TryGetComponent(rightB.ComponentType, out var trash))
                 if ((leftObj != null && !leftObj.TryGetComponent(rightB.ComponentType, out var trash)) ||
@@ -148,7 +74,7 @@ public class ISText : MonoBehaviour
             }
             else if (left.TryGetComponent<AText>(out leftA) && right.TryGetComponent<AText>(out var rightA))
             {
-                dir = Vector2.right;
+                ran = true;
                 if (leftA != (AText)prevAText ||
                     prevBText.GetType() != rightA.GetType() ||
                     (prevBText.GetType() == rightA.GetType() && ((AText)prevBText).Text != rightA.Text))
@@ -164,6 +90,18 @@ public class ISText : MonoBehaviour
                     prevAText = leftA;
                     prevBText = rightA;
                 }
+            }
+        }
+        if (!ran)
+        {
+            if (prevAText != null && prevBText != null)
+            {
+                if (prevBText.GetType() == typeof(BText))
+                {
+                    RemoveComponentFromObjects(((AText)prevAText).Text, ((BText)prevBText).ComponentType);
+                }
+                prevAText = null;
+                prevBText = null;
             }
         }
     }

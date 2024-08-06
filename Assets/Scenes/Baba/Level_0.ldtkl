@@ -550,7 +550,7 @@
 				},
 				{
 					"__identifier": "RockBox",
-					"__grid": [20,15],
+					"__grid": [13,14],
 					"__pivot": [0.5,0.5],
 					"__tags": ["Name"],
 					"__tile": { "tilesetUid": 17, "x": 1, "y": 1, "w": 24, "h": 24 },
@@ -559,10 +559,10 @@
 					"width": 16,
 					"height": 16,
 					"defUid": 22,
-					"px": [328,248],
+					"px": [216,232],
 					"fieldInstances": [],
-					"__worldX": 296,
-					"__worldY": 232
+					"__worldX": 184,
+					"__worldY": 216
 				},
 				{
 					"__identifier": "Is",
@@ -582,7 +582,7 @@
 				},
 				{
 					"__identifier": "PushText",
-					"__grid": [22,15],
+					"__grid": [13,16],
 					"__pivot": [0.5,0.5],
 					"__tags": ["Rule"],
 					"__tile": { "tilesetUid": 6, "x": 1, "y": 1, "w": 24, "h": 24 },
@@ -591,10 +591,10 @@
 					"width": 16,
 					"height": 16,
 					"defUid": 12,
-					"px": [360,248],
+					"px": [216,264],
 					"fieldInstances": [],
-					"__worldX": 328,
-					"__worldY": 232
+					"__worldX": 184,
+					"__worldY": 248
 				},
 				{
 					"__identifier": "Baba",
@@ -723,22 +723,6 @@
 					"fieldInstances": [],
 					"__worldX": 408,
 					"__worldY": 136
-				},
-				{
-					"__identifier": "PushText",
-					"__grid": [27,10],
-					"__pivot": [0.5,0.5],
-					"__tags": ["Rule"],
-					"__tile": { "tilesetUid": 6, "x": 1, "y": 1, "w": 24, "h": 24 },
-					"__smartColor": "#733E39",
-					"iid": "bf6a1fb0-4ce0-11ef-a490-b709d81f7267",
-					"width": 16,
-					"height": 16,
-					"defUid": 12,
-					"px": [440,168],
-					"fieldInstances": [],
-					"__worldX": 408,
-					"__worldY": 152
 				}
 			]
 		}
