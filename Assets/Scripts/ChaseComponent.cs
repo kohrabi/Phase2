@@ -17,10 +17,10 @@ public class ChaseComponent : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
     }
 
-    private void Update()
-    {
-        Chase();
-    }
+    //private void Update()
+    //{
+    //    Chase();
+    //}
 
     public Vector2 move;
     public void Chase()
@@ -90,6 +90,7 @@ public class ChaseComponent : MonoBehaviour
         }
     }
 
+    private int count = 0;
     private Vector2 FindBestMove()
     {
         Vector2 start = gridMove.MoveTarget;
@@ -104,6 +105,8 @@ public class ChaseComponent : MonoBehaviour
 
         while (openList.Count > 0)
         {
+            count++;
+            Debug.Log(count);
             Node currentNode = openList[0];
             for (int i = 1; i < openList.Count; i++)
             {
@@ -113,7 +116,6 @@ public class ChaseComponent : MonoBehaviour
                     currentNode = openList[i];
                 }
             }
-
             openList.Remove(currentNode);
             closedList.Add(currentNode);
 
@@ -179,9 +181,11 @@ public class ChaseComponent : MonoBehaviour
         int i = 0;
         for (; i < colliders.Count; i++)
         {
+            if (colliders[i].gameObject.CompareTag("Baba"))
+                return true;
             if (colliders[i].gameObject.CompareTag("RuleBox")) break;
+            if (colliders[i].gameObject.TryGetComponent<PushableComponent>(out var pushable)) break;
             if (colliders[i].gameObject.CompareTag("Wall")) break;
-            if (!colliders[i].gameObject.TryGetComponent<PushableComponent>(out var pushable)) break;
         }
 
         return i >= colliders.Count;
