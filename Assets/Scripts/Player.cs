@@ -33,6 +33,9 @@ public class Player : MonoBehaviour
             horizontalInput = 0;
             verticalInput = 0;
         }
+
+        if (horizontalInput != 0 || verticalInput != 0) 
+            TurnManager.Instance.PlayerMove();
         GridMove.TryMove(new Vector3(horizontalInput, verticalInput, 0));
     }
 
@@ -40,6 +43,4 @@ public class Player : MonoBehaviour
     {
         
     }
-
-
 }

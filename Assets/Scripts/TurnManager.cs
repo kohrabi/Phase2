@@ -5,7 +5,7 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     private static TurnManager _instance;
-    public static TurnManager Instance;
+    public static TurnManager Instance => _instance;
     private void Awake()
     {
         if (_instance == null)
