@@ -164,7 +164,7 @@ public class ChaseComponent : MonoBehaviour
 
         path.Reverse();
 
-        return path.Count > 1 ? path[1].Position - startNode.Position : Vector2.zero;
+        return path.Count > 1 ? path[0].Position - startNode.Position : Vector2.zero;
     }
 
     private IEnumerable<Vector2> GetNeighbors(Vector2 position)
@@ -185,7 +185,7 @@ public class ChaseComponent : MonoBehaviour
                 return true;
             if (colliders[i].gameObject.CompareTag("RuleBox")) break;
             if (colliders[i].gameObject.TryGetComponent<PushableComponent>(out var pushable)) break;
-            if (colliders[i].gameObject.CompareTag("Wall")) break;
+            //if (colliders[i].gameObject.CompareTag("Wall")) break;
         }
 
         return i >= colliders.Count;
