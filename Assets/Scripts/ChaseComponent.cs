@@ -184,7 +184,7 @@ public class ChaseComponent : MonoBehaviour
             if (colliders[i].gameObject.CompareTag("Baba"))
                 return true;
             if (colliders[i].gameObject.CompareTag("RuleBox")) break;
-            if (colliders[i].gameObject.TryGetComponent<PushableComponent>(out var pushable)) break;
+            if (!colliders[i].gameObject.TryGetComponent<PushableComponent>(out var pushable)) break;
             //if (colliders[i].gameObject.CompareTag("Wall")) break;
         }
 
