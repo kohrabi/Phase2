@@ -7,12 +7,14 @@ using UnityEngine;
 public class BText : MonoBehaviour, INameText
 {
     public string Text;
+    public AText LeftText, UpText;
     public string ComponentName;
     public Type ComponentType;
-
+  
     // Start is called before the first frame update
     void Start()
     {
         ComponentType = Type.GetType(ComponentName);
+        LeftText = UpText = null;
     }
 }

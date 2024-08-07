@@ -169,9 +169,9 @@ public class ISText : MonoBehaviour
     }
     
 
-    void AddComponentToObjects(string tag, Type componentType)
+   public static void AddComponentToObjects(string tag, Type componentType)
     {
-        var objects = GameObject.FindGameObjectsWithTag(tag);
+        var objects = AndText.FindTag(tag);
         foreach (var obj in objects)
         {
             obj.AddComponent(componentType);
@@ -181,9 +181,9 @@ public class ISText : MonoBehaviour
         CurrentRules[tag].Add(componentType);
     }
 
-    void ReplaceObjectsWithObject(string tagobjs, string tagobj)
+    public static void ReplaceObjectsWithObject(string tagobjs, string tagobj)
     {
-        var objs = GameObject.FindGameObjectsWithTag(tagobjs);
+        var objs = AndText.FindTag(tagobjs);
         var replaceObj = GameObject.FindGameObjectWithTag(tagobj);
         bool nullObj = false;
         if (replaceObj == null)
@@ -209,9 +209,9 @@ public class ISText : MonoBehaviour
         }
     }
 
-    void RemoveComponentFromObjects(string tag, Type componentType)
+    public static void RemoveComponentFromObjects(string tag, Type componentType)
     {
-        var objects = GameObject.FindGameObjectsWithTag(tag);
+        var objects = AndText.FindTag(tag);
         foreach (var obj in objects)
         {
             var component = obj.gameObject.GetComponent(componentType);
