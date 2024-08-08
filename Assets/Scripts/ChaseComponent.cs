@@ -17,11 +17,6 @@ public class ChaseComponent : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
     }
 
-    //private void Update()
-    //{
-    //    Chase();
-    //}
-
     public Vector2 move;
     public void Chase()
     {
@@ -30,53 +25,6 @@ public class ChaseComponent : MonoBehaviour
         move = FindBestMove();
         gridMove.TryMove(move);
     }
-
-    //private Vector2 FindBestMove()//Tra ve 1 huong
-    //{
-    //    Vector2 BestMove = Vector2.zero;
-    //    float minDistance = Mathf.Infinity;
-    //    List<Collider2D> left = detectGameObjects(gridMove.MoveTarget + new Vector3(-BoxSize.x, 0));
-    //    if (CheckMoveable(left))
-    //    {
-    //        float dis = Vector2.Distance(gridMove.MoveTarget + new Vector3(-BoxSize.x, 0), player.transform.position);
-    //        if (dis < minDistance)
-    //        {
-    //            minDistance = dis;
-    //            BestMove = Vector2.left;
-    //        }
-    //    }
-    //    List<Collider2D> right = detectGameObjects(gridMove.MoveTarget + new Vector3(BoxSize.x, 0));
-    //    if (CheckMoveable(right))
-    //    {
-    //        float dis = Vector2.Distance(gridMove.MoveTarget + new Vector3(BoxSize.x, 0), player.transform.position);
-    //        if (dis < minDistance)
-    //        {
-    //            minDistance = dis;
-    //            BestMove = Vector2.right;
-    //        }
-    //    }
-    //    List<Collider2D> up = detectGameObjects(gridMove.MoveTarget + new Vector3(0, BoxSize.y));
-    //    if (CheckMoveable(up))
-    //    {
-    //        float dis = Vector2.Distance(gridMove.MoveTarget + new Vector3(0, BoxSize.y), player.transform.position);
-    //        if (dis < minDistance)
-    //        {
-    //            minDistance = dis;
-    //            BestMove = Vector2.up;
-    //        }
-    //    }
-    //    List<Collider2D> down = detectGameObjects(gridMove.MoveTarget + new Vector3(0, -BoxSize.y));
-    //    if (CheckMoveable(down))
-    //    {
-    //        float dis = Vector2.Distance(gridMove.MoveTarget + new Vector3(0, -BoxSize.y), player.transform.position);
-    //        if (dis < minDistance)
-    //        {
-    //            minDistance = dis;
-    //            BestMove = Vector2.down;
-    //        }
-    //    }
-    //    return BestMove;
-    //}
 
     public class Node
     {
