@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+[RequireComponent(typeof(GridMoveComponent))]
 public class ChaseComponent : MonoBehaviour
 {
     private GridMoveComponent gridMove;
