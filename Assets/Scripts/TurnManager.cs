@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,9 +17,15 @@ public class TurnManager : MonoBehaviour
 
     private ChaseComponent[] _chaseObjects;
 
-    public void PlayerMove()
+
+    private void Start()
     {
-        ChaseObjectMove();
+        Player.PlayerMove += ChaseObjectMove;
+    }
+
+    private void OnDestroy()
+    {
+        Player.PlayerMove -= ChaseObjectMove;
     }
 
     private void ChaseObjectMove()

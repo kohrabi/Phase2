@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class Player : MonoBehaviour
 
     Vector2 moveDir = Vector2.zero;
 
-
+    public static event Action PlayerMove;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +35,12 @@ public class Player : MonoBehaviour
             verticalInput = 0;
         }
 
-        if (horizontalInput != 0 || verticalInput != 0) 
-            TurnManager.Instance.PlayerMove();
-        GridMove.TryMove(new Vector3(horizontalInput, verticalInput, 0));
+        Vector3 input = new Vector3(horizontalInput, verticalInput, 0);
+        if (input != Vector3.zero)
+        {
+            PlayerMove?.Invoke();
+        }
+        GridMove.TryMove(input);
     }
 
     private void FixedUpdate()

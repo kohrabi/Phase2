@@ -25,6 +25,8 @@ public class ChaseComponent : MonoBehaviour
     public Vector2 move;
     public void Chase()
     {
+        if (!GridMoveComponent.CanMove)
+            return;
         move = FindBestMove();
         gridMove.TryMove(move);
     }
