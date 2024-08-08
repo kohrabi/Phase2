@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WinComponent : MonoBehaviour
+public class DefeatComponent : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,15 +16,9 @@ public class WinComponent : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
-    {
-        if (this.gameObject.GetComponent<Player>())
-            Debug.Log("Win");
-
-    }
     public void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Player>() != null)
-            Debug.Log("Win");
+            Destroy(collision.gameObject); 
     }
 }
