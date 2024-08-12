@@ -7,7 +7,7 @@ using UnityEngine;
 public class BText : MonoBehaviour, INameText
 {
     public string Text;
-    public AText LeftText, UpText;
+    public string LeftText, RightText, UpText, DownText;
     public string ComponentName;
     public Type ComponentType;
   
@@ -15,6 +15,6 @@ public class BText : MonoBehaviour, INameText
     void Start()
     {
         ComponentType = Type.GetType(ComponentName);
-        LeftText = UpText = null;
+        LeftText = RightText = UpText = DownText = null;
     }
 }

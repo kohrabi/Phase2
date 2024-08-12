@@ -60,47 +60,12 @@ public class AndText : MonoBehaviour
 
         if (up != null && down != null)
         {
-            if (up.TryGetComponent<AText>(out var upA) && down.TryGetComponent<AText>(out var downA))
+            if (up.TryGetComponent<AText>(out var upA))
             {
-                if (upA.UpText != null) upA.UpText = upA;
-                {
-                    Debug.Log(upA.Text + " and " + downA.Text);
-                    if (prevUpA != null && prevDownA != null && prevUpA.Text != upA.Text && prevDownA.Text != downA.Text)
-                    {
-                        Tags[prevUpA.Text] = new List<string> { ((AText)prevUpA).Text };
-                        Tags[prevDownA.Text] = new List<string> { ((AText)prevDownA).Text };
-                    }
-                    foreach (var s in Tags[upA.Text]) if (!Tags[downA.Text].Contains(s)) Tags[downA.Text].Add(s);
-                    foreach (var s in Tags[downA.Text]) if (Tags[upA.Text].Contains(s)) Tags[upA.Text].Add(s);
-                    downA.UpText = upA.UpText;
-                   // prevUpA.UpText = null;
-                   // prevDownA.UpText = null;
-                    prevUpA = upA;
-                    prevDownA = downA;
-                   prevUpB = null;
-                    prevDownB = null;
-                }
+                if(upA != null) { }
             }
 
-            else if ( down.TryGetComponent<BText>(out var downB))
-            {
-                if (upA.UpText != null)
-                {
-                    downB.UpText = upA.UpText;
-                    Debug.Log(upA.Text + " and " + downB.Text);
-                    if (prevDownB != null)
-                    {
-                        ISText.RemoveComponentFromObjects(prevDownB.UpText.Text, prevDownB.ComponentType);
-                        prevDownB.UpText = prevUpA.UpText = null;
-                    }
-                    prevUpB = null;
-                    prevDownA = null;
-                    prevUpA = upA;
-                    prevDownB = downB;
-                    ISText.ReplaceObjectsWithObject(upA.UpText.Text, upA.Text);
-                    ISText.AddComponentToObjects(upA.UpText.Text, downB.ComponentType);
-                }
-            }
+           
 
         }
     }

@@ -8,9 +8,9 @@ public class AText : MonoBehaviour, INameText
     [SerializeField] public float RowSize = 0.5f;
     [SerializeField] public float ColumnSize = 0.5f;
     public string Text;
-    public AText LeftText,UpText;
+    public string LeftText,RightText,UpText,DownText;
    void Start()
     {
-        LeftText=UpText = null;
+        LeftText=RightText=UpText=DownText = null;
     }
 }
