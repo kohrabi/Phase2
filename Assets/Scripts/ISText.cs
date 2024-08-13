@@ -63,7 +63,7 @@ public class ISText : MonoBehaviour
                     Debug.Log(leftA.Text + " is " + rightB.Text);
                     if (prevAText != null && prevBText != null)
                     {
-                        if (prevRightBText.GetType() == typeof(BText))
+                        if (prevBText.GetType() == typeof(BText))
                         {
                             RemoveComponentFromObjects(((AText)prevAText).Text, ((BText)prevBText).ComponentType);
                         }
