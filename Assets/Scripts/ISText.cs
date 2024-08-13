@@ -68,7 +68,7 @@ public class ISText : MonoBehaviour
                     Debug.Log(leftA.Text + " is " + rightB.Text);
                     if (prevAText != null && prevBText != null)
                     {
-                        if (prevRightBText.GetType() == typeof(BText))
+                        if (prevBText.GetType() == typeof(BText))
                         {
                             RemoveComponentFromObjects(((AText)prevAText).Text, ((BText)prevBText).ComponentType);
                             if (i == 0)
@@ -130,6 +130,11 @@ public class ISText : MonoBehaviour
                     prevBText = rightA;
                 }
             }
+        }
+        else if (left != null)
+        {
+            if (left.GetComponent<AText>() != null) left.GetComponent<AText>().UpText = null;
+            if (left.GetComponent<BText>() != null) left.GetComponent<BText>().UpText = null;
         }
         if (!ran)
         {
