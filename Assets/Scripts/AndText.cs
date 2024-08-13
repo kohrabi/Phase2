@@ -13,29 +13,19 @@ public class AndText : MonoBehaviour
     [SerializeField] public float ColumnSize = 0.5f;
     [SerializeField] private new BoxCollider2D collider;
     public static Dictionary<string, List<string>> Tags = new Dictionary<string, List<string>>();
-
-    AText prevUpA, prevDownA, prevLeftA, prevRightA;
-    BText prevUpB, prevDownB, prevLeftB, prevRightB;
+    string prevUp, prevLeft;
+    Collider2D prevRight;
+    Collider2D prevDown;
 
     GridMoveComponent gridMove;
     // Start is called before the first frame update
     void Start()
     {
-        List<string> list = new List<string>{"Baba","Flag","Rock","Wall" };
-        foreach (string s in list)
-        {
-            if(!Tags.TryGetValue(s, out var l))
-            {
-                Tags.Add(s, new List<string>());
-                Tags[s].Add(s);
-            }
-        }
+
 
         gridMove = GetComponent<GridMoveComponent>();
 
 
-        prevDownA = prevLeftA = prevRightA = prevUpA = null;
-        prevDownB = prevLeftB = prevRightB = prevUpB = null;
     }
 
     // Update is called once per frame
@@ -60,22 +50,38 @@ public class AndText : MonoBehaviour
 
         if (up != null && down != null)
         {
-            if (up.TryGetComponent<AText>(out var upA))
+            if(!(up.GetComponent<AText>() == null && up.GetComponent<BText>()==null)&& !(down.GetComponent<AText>() == null && down.GetComponent<BText>() == null)) 
+           { 
+            Debug.Log("And");
+            string prev;
+            if (up.TryGetComponent<AText>(out var Up))
             {
-                if(upA != null) { }
+                prev = Up.UpText;
             }
+            else prev = up.GetComponent<BText>().UpText;
+                if (prev != null)
+                {
+                    if (down.TryGetComponent<AText>(out var Down))
+                    {
+                        ISText.ReplaceObjectsWithObject(prev, Down.Text);
+                        Down.UpText = prev;
+                    }
+                    else
+                    {
+                        ISText.AddComponentToObjects(prev, down.GetComponent<BText>().ComponentType);
+                        down.GetComponent<BText>().UpText = prev;
+                    }
+                    if (prevDown != null && prevDown.TryGetComponent<BText>(out var DownB))
+                    {
+                        ISText.RemoveComponentFromObjects(prevUp, DownB.ComponentType);
+                        if (down != prevDown) DownB.UpText = null;
+                    }
+                    prevDown = down;
+                    prevUp = prev;
 
-           
+                }
+            }
+        }
 
-        }
-    }
-    public static List<GameObject> FindTag(string tag)
-    {
-        List<GameObject> result = new List<GameObject>();
-        foreach (var s in Tags[tag])
-        {
-            result.AddRange(GameObject.FindGameObjectsWithTag(s));
-        }
-        return result;
     }
 }

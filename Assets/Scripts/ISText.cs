@@ -11,7 +11,7 @@ public class ISText : MonoBehaviour
     [SerializeField] public float RowSize = 0.5f;
     [SerializeField] public float ColumnSize = 0.5f;
     [SerializeField] private new BoxCollider2D collider;
-    public static Dictionary<string, List<Type> > CurrentRules = new Dictionary<string, List<Type> >(); 
+    public static Dictionary<string, List<Type>> CurrentRules = new Dictionary<string, List<Type>>();
 
     GridMoveComponent gridMove;
     INameText prevLeftAText;
@@ -21,7 +21,7 @@ public class ISText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gridMove = GetComponent<GridMoveComponent>();   
+        gridMove = GetComponent<GridMoveComponent>();
     }
 
     private void FixedUpdate()
@@ -31,101 +31,27 @@ public class ISText : MonoBehaviour
 
     public void Check()
     {
-        Collider2D left = 
+        Collider2D left =
             Physics2D.OverlapBox(gridMove.MoveTarget - new Vector3(ColumnSize * 2, 0), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
-        Collider2D right = 
+        Collider2D right =
             Physics2D.OverlapBox(gridMove.MoveTarget + new Vector3(ColumnSize * 2, 0), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
-        Collider2D up = 
+        Collider2D up =
             Physics2D.OverlapBox(gridMove.MoveTarget + new Vector3(0, RowSize * 2), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
-        Collider2D down = 
+        Collider2D down =
             Physics2D.OverlapBox(gridMove.MoveTarget - new Vector3(0, RowSize * 2), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
 
-        Vector2 dir = Vector2.zero;
-
-        CheckRule(left, right, ref dir, ref prevLeftAText, ref prevRightBText);
-        CheckRule(up, down, ref dir, ref prevUpAText, ref prevDownBText);
-        /*
-        if (up != null && down != null)
-        {
-            if (up.TryGetComponent<AText>(out var upA) && down.TryGetComponent<BText>(out var downB))
-            {
-                dir = Vector2.down;
-
-                var upObj = GameObject.FindGameObjectWithTag(upA.Text);
-                //if ()
-                if ((upObj != null && !upObj.TryGetComponent(downB.ComponentType, out var trash)) || 
-                    upA != (AText)prevUpAText ||
-                    prevDownBText.GetType() != downB.GetType() ||
-                    (prevDownBText.GetType() == downB.GetType() && ((BText)prevDownBText).Text != downB.Text))
-                {
-                    AddComponentToObjects(upA.Text, downB.ComponentType);
-                    Debug.Log(upA.Text + " is " + downB.Text);
-                    if (prevUpAText != null && prevDownBText != null)
-                    {
-                        if (prevDownBText.GetType() == typeof(BText))
-                        {
-                            RemoveComponentFromObjects(((AText)prevUpAText).Text, ((BText)prevDownBText).ComponentType);
-                        }
-                    }
-                    prevUpAText = upA;
-                    prevDownBText = downB;
-                }
-            }
-            else if (left.TryGetComponent<AText>(out upA) && right.TryGetComponent<AText>(out var downA))
-            {
-                dir = Vector2.right;
-                if (upA != (AText)prevUpAText ||
-                    prevDownBText.GetType() != downA.GetType() ||
-                    (prevDownBText.GetType() == downA.GetType() && ((AText)prevDownBText).Text != downA.Text))
-                {
-                    ReplaceObjectsWithObject(upA.Text, downA.Text);
-                    Debug.Log(upA.Text + " is " + downA.Text);
-                    if (prevUpAText != null && prevDownBText != null)
-                    {
-                        if (prevDownBText.GetType() == typeof(BText))
-                        {
-                            RemoveComponentFromObjects(((AText)prevUpAText).Text, ((BText)prevDownBText).ComponentType);
-                        }
-                    }
-                    prevUpAText = upA;
-                    prevDownBText = downA;
-                }
-            }
-        }   
-        */
-        
-        // remove old rule
-        if (dir == Vector2.zero)
-        {
-            if (prevLeftAText != null && prevRightBText != null)
-            {
-                if (prevRightBText.GetType() == typeof(BText))
-                {
-                    RemoveComponentFromObjects(((AText)prevLeftAText).Text, ((BText)prevRightBText).ComponentType);
-                }
-                prevLeftAText = null;
-                prevRightBText = null;
-            }
-            if (prevUpAText != null && prevDownBText != null)
-            {
-                if (prevDownBText.GetType() == typeof(BText))
-                {
-                    RemoveComponentFromObjects(((AText)prevUpAText).Text, ((BText)prevDownBText).ComponentType);
-                }
-                prevUpAText = null;
-                prevDownBText = null;
-            }
-        }
-
+        CheckRule(left, right, ref prevLeftAText, ref prevRightBText,0);
+        CheckRule(up, down, ref prevUpAText, ref prevDownBText,1);
     }
 
-    void CheckRule(Collider2D left, Collider2D right, ref Vector2 dir, ref INameText prevAText, ref INameText prevBText)
+    void CheckRule(Collider2D left, Collider2D right, ref INameText prevAText, ref INameText prevBText,int i)
     {
+        bool ran = false;
         if (left != null && right != null)
         {
             if (left.TryGetComponent<AText>(out var leftA) && right.TryGetComponent<BText>(out var rightB))
             {
-                dir = Vector2.right;
+                ran = true;
                 var leftObj = GameObject.FindGameObjectWithTag(leftA.Text);
                 //if (leftA.TryGetComponent(rightB.ComponentType, out var trash))
                 if ((leftObj != null && !leftObj.TryGetComponent(rightB.ComponentType, out var trash)) ||
@@ -133,6 +59,11 @@ public class ISText : MonoBehaviour
                     prevBText.GetType() != rightB.GetType() ||
                     (prevBText.GetType() == rightB.GetType() && ((BText)prevBText).ComponentName != rightB.ComponentName))
                 {
+                    if(i==0)
+                    {
+                        rightB.LeftText = leftA.Text;
+                    }
+                    else rightB.UpText = leftA.Text;
                     AddComponentToObjects(leftA.Text, rightB.ComponentType);
                     Debug.Log(leftA.Text + " is " + rightB.Text);
                     if (prevAText != null && prevBText != null)
@@ -140,6 +71,19 @@ public class ISText : MonoBehaviour
                         if (prevRightBText.GetType() == typeof(BText))
                         {
                             RemoveComponentFromObjects(((AText)prevAText).Text, ((BText)prevBText).ComponentType);
+                            if (i == 0)
+                            {
+                                ((BText)prevBText).LeftText = null;
+                            }
+                            else ((BText)prevBText).UpText = null;
+                        }
+                        else
+                        {
+                            if (i == 0)
+                            {
+                                ((AText)prevBText).LeftText = null;
+                            }
+                            else ((AText)prevBText).UpText = null;
                         }
                     }
                     prevAText = leftA;
@@ -148,17 +92,38 @@ public class ISText : MonoBehaviour
             }
             else if (left.TryGetComponent<AText>(out leftA) && right.TryGetComponent<AText>(out var rightA))
             {
-                dir = Vector2.right;
+                ran = true;
                 if (leftA != (AText)prevAText ||
                     prevBText.GetType() != rightA.GetType() ||
                     (prevBText.GetType() == rightA.GetType() && ((AText)prevBText).Text != rightA.Text))
                 {
+                    if (i == 0)
+                    {
+                        rightA.LeftText = leftA.Text;
+                    }
+                    else
+                    {
+                        rightA.UpText = leftA.Text;
+                    }
                     ReplaceObjectsWithObject(leftA.Text, rightA.Text);
                     if (prevAText != null && prevBText != null)
                     {
-                        if (prevBText.GetType() == typeof(BText))
+                        if (prevRightBText.GetType() == typeof(BText))
                         {
-                            RemoveComponentFromObjects(((AText)prevBText).Text, ((BText)prevBText).ComponentType);
+                            RemoveComponentFromObjects(((AText)prevAText).Text, ((BText)prevBText).ComponentType);
+                            if (i == 0)
+                            {
+                                ((BText)prevBText).LeftText = null;
+                            }
+                            else ((BText)prevBText).UpText = null;
+                        }
+                        else
+                        {
+                            if (i == 0)
+                            {
+                                ((AText)prevBText).LeftText = null;
+                            }
+                            else ((AText)prevBText).UpText = null;
                         }
                     }
                     prevAText = leftA;
@@ -166,12 +131,38 @@ public class ISText : MonoBehaviour
                 }
             }
         }
+        if (!ran)
+        {
+            if (prevAText != null && prevBText != null)
+            {
+                if (prevBText.GetType() == typeof(BText))
+                {
+                    RemoveComponentFromObjects(((AText)prevAText).Text, ((BText)prevBText).ComponentType);
+                    if (i == 0)
+                    {
+                        ((BText)prevBText).LeftText = null;
+                    }
+                    else ((BText)prevBText).UpText = null;
+                }
+                else
+                {
+                    if (i == 0)
+                    {
+                        ((AText)prevBText).LeftText = null;
+                    }
+                    else ((AText)prevBText).UpText = null;
+                }
+                prevAText = null;
+                prevBText = null;
+            }
+            
+        }
     }
-    
+
 
    public static void AddComponentToObjects(string tag, Type componentType)
     {
-        var objects = AndText.FindTag(tag);
+        var objects = GameObject.FindGameObjectsWithTag(tag);
         foreach (var obj in objects)
         {
             obj.AddComponent(componentType);
@@ -183,7 +174,7 @@ public class ISText : MonoBehaviour
 
     public static void ReplaceObjectsWithObject(string tagobjs, string tagobj)
     {
-        var objs = AndText.FindTag(tagobjs);
+        var objs = GameObject.FindGameObjectsWithTag(tagobjs);
         var replaceObj = GameObject.FindGameObjectWithTag(tagobj);
         bool nullObj = false;
         if (replaceObj == null)
@@ -211,7 +202,7 @@ public class ISText : MonoBehaviour
 
     public static void RemoveComponentFromObjects(string tag, Type componentType)
     {
-        var objects = AndText.FindTag(tag);
+        var objects = GameObject.FindGameObjectsWithTag(tag);
         foreach (var obj in objects)
         {
             var component = obj.gameObject.GetComponent(componentType);
@@ -223,5 +214,5 @@ public class ISText : MonoBehaviour
         }
     }
 
-   
+
 }
