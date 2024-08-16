@@ -11,7 +11,7 @@ public class ISText : MonoBehaviour
     [SerializeField] public float RowSize = 0.5f;
     [SerializeField] public float ColumnSize = 0.5f;
     [SerializeField] private new BoxCollider2D collider;
-    public static Dictionary<string, List<Type> > CurrentRules = new Dictionary<string, List<Type> >(); 
+    public static Dictionary<string, List<Type>> CurrentRules = new Dictionary<string, List<Type>>();
 
     GridMoveComponent gridMove;
     INameText prevLeftAText;
@@ -21,7 +21,7 @@ public class ISText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gridMove = GetComponent<GridMoveComponent>();   
+        gridMove = GetComponent<GridMoveComponent>();
     }
 
     private void FixedUpdate()
@@ -31,20 +31,20 @@ public class ISText : MonoBehaviour
 
     public void Check()
     {
-        Collider2D left = 
+        Collider2D left =
             Physics2D.OverlapBox(gridMove.MoveTarget - new Vector3(ColumnSize * 2, 0), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
-        Collider2D right = 
+        Collider2D right =
             Physics2D.OverlapBox(gridMove.MoveTarget + new Vector3(ColumnSize * 2, 0), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
-        Collider2D up = 
+        Collider2D up =
             Physics2D.OverlapBox(gridMove.MoveTarget + new Vector3(0, RowSize * 2), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
-        Collider2D down = 
+        Collider2D down =
             Physics2D.OverlapBox(gridMove.MoveTarget - new Vector3(0, RowSize * 2), collider.bounds.size, 0, LayerMask.GetMask("RuleBox"));
 
-        CheckRule(left, right, ref prevLeftAText, ref prevRightBText);
-        CheckRule(up, down, ref prevUpAText, ref prevDownBText);
+        CheckRule(left, right, ref prevLeftAText, ref prevRightBText,0);
+        CheckRule(up, down, ref prevUpAText, ref prevDownBText,1);
     }
 
-    void CheckRule(Collider2D left, Collider2D right, ref INameText prevAText, ref INameText prevBText)
+    void CheckRule(Collider2D left, Collider2D right, ref INameText prevAText, ref INameText prevBText,int i)
     {
         bool ran = false;
         if (left != null && right != null)
@@ -59,6 +59,11 @@ public class ISText : MonoBehaviour
                     prevBText.GetType() != rightB.GetType() ||
                     (prevBText.GetType() == rightB.GetType() && ((BText)prevBText).ComponentName != rightB.ComponentName))
                 {
+                    if(i==0)
+                    {
+                        rightB.LeftText = leftA.Text;
+                    }
+                    else rightB.UpText = leftA.Text;
                     AddComponentToObjects(leftA.Text, rightB.ComponentType);
                     Debug.Log(leftA.Text + " is " + rightB.Text);
                     if (prevAText != null && prevBText != null)
@@ -66,6 +71,19 @@ public class ISText : MonoBehaviour
                         if (prevBText.GetType() == typeof(BText))
                         {
                             RemoveComponentFromObjects(((AText)prevAText).Text, ((BText)prevBText).ComponentType);
+                            if (i == 0)
+                            {
+                                ((BText)prevBText).LeftText = null;
+                            }
+                            else ((BText)prevBText).UpText = null;
+                        }
+                        else
+                        {
+                            if (i == 0)
+                            {
+                                ((AText)prevBText).LeftText = null;
+                            }
+                            else ((AText)prevBText).UpText = null;
                         }
                     }
                     prevAText = leftA;
@@ -79,18 +97,44 @@ public class ISText : MonoBehaviour
                     prevBText.GetType() != rightA.GetType() ||
                     (prevBText.GetType() == rightA.GetType() && ((AText)prevBText).Text != rightA.Text))
                 {
+                    if (i == 0)
+                    {
+                        rightA.LeftText = leftA.Text;
+                    }
+                    else
+                    {
+                        rightA.UpText = leftA.Text;
+                    }
                     ReplaceObjectsWithObject(leftA.Text, rightA.Text);
                     if (prevAText != null && prevBText != null)
                     {
-                        if (prevBText.GetType() == typeof(BText))
+                        if (prevRightBText.GetType() == typeof(BText))
                         {
-                            RemoveComponentFromObjects(((AText)prevBText).Text, ((BText)prevBText).ComponentType);
+                            RemoveComponentFromObjects(((AText)prevAText).Text, ((BText)prevBText).ComponentType);
+                            if (i == 0)
+                            {
+                                ((BText)prevBText).LeftText = null;
+                            }
+                            else ((BText)prevBText).UpText = null;
+                        }
+                        else
+                        {
+                            if (i == 0)
+                            {
+                                ((AText)prevBText).LeftText = null;
+                            }
+                            else ((AText)prevBText).UpText = null;
                         }
                     }
                     prevAText = leftA;
                     prevBText = rightA;
                 }
             }
+        }
+        else if (left != null)
+        {
+            if (left.GetComponent<AText>() != null) left.GetComponent<AText>().UpText = null;
+            if (left.GetComponent<BText>() != null) left.GetComponent<BText>().UpText = null;
         }
         if (!ran)
         {
@@ -99,15 +143,29 @@ public class ISText : MonoBehaviour
                 if (prevBText.GetType() == typeof(BText))
                 {
                     RemoveComponentFromObjects(((AText)prevAText).Text, ((BText)prevBText).ComponentType);
+                    if (i == 0)
+                    {
+                        ((BText)prevBText).LeftText = null;
+                    }
+                    else ((BText)prevBText).UpText = null;
+                }
+                else
+                {
+                    if (i == 0)
+                    {
+                        ((AText)prevBText).LeftText = null;
+                    }
+                    else ((AText)prevBText).UpText = null;
                 }
                 prevAText = null;
                 prevBText = null;
             }
+            
         }
     }
-    
 
-    void AddComponentToObjects(string tag, Type componentType)
+
+   public static void AddComponentToObjects(string tag, Type componentType)
     {
         var objects = GameObject.FindGameObjectsWithTag(tag);
         foreach (var obj in objects)
@@ -119,7 +177,7 @@ public class ISText : MonoBehaviour
         CurrentRules[tag].Add(componentType);
     }
 
-    void ReplaceObjectsWithObject(string tagobjs, string tagobj)
+    public static void ReplaceObjectsWithObject(string tagobjs, string tagobj)
     {
         var objs = GameObject.FindGameObjectsWithTag(tagobjs);
         var replaceObj = GameObject.FindGameObjectWithTag(tagobj);
@@ -147,7 +205,7 @@ public class ISText : MonoBehaviour
         }
     }
 
-    void RemoveComponentFromObjects(string tag, Type componentType)
+    public static void RemoveComponentFromObjects(string tag, Type componentType)
     {
         var objects = GameObject.FindGameObjectsWithTag(tag);
         foreach (var obj in objects)
@@ -161,5 +219,5 @@ public class ISText : MonoBehaviour
         }
     }
 
-   
+
 }
