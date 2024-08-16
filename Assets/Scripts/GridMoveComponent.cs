@@ -4,22 +4,27 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D), typeof(Animator))]
 public class GridMoveComponent : MonoBehaviour
 {
     public const float RowSize = 0.5f;
     public const float ColumnSize = 0.5f;
-    public const float MoveSpeed = 8f;
+    public const float MoveSpeed = 10f;
     public const float MoveDelay = 0.2f;
+
     public static bool Moved = false;
     public static bool CanMove = true;
+    public static event EventHandler TurnOnPlayerInput;
+    public static event EventHandler TurnEnded;
     public static Coroutine DelayMoveCoroutine = null;
+    
     private new Rigidbody2D rigidbody;
     private Animator animator;
     private new BoxCollider2D collider;
     public Vector3 Velocity = Vector3.zero;
-    bool undoing = false;
+    [HideInInspector] public bool undoing = false;
 
     Vector3 moveCurr = Vector3.zero; // Dung Xoa
     public Vector3 MoveTarget = Vector3.zero; // Dung Xoa
@@ -57,6 +62,7 @@ public class GridMoveComponent : MonoBehaviour
         if (Moved && DelayMoveCoroutine == null)
         {
             CanMove = false;
+            TurnOnPlayerInput?.Invoke(this, null);
             // Waiting till next turn
             DelayMoveCoroutine = StartCoroutine(DelayMove());
         }
@@ -70,14 +76,15 @@ public class GridMoveComponent : MonoBehaviour
         Gizmos.DrawSphere(MoveTarget, 0.2f);
     }
 
-    private bool CollisionHandling(ref Vector3 velocity)
+    private int CollisionHandling(ref Vector3 velocity)
     {
         if (velocity.x == 0 && velocity.y == 0)
-            return true;
+            return 1;
+        //Collider2D[] hits = Physics2D.BoxCastAll(transform.position, collider.bounds.size, 0, velocity.normalized, velocity.magnitude);
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position + velocity, collider.bounds.size, 0);
         if (hits != null && hits.Length > 0)
         {
-            bool moveable = true;
+            int moveable = 1;
             for (int i = 0; i < hits.Length; i++)
             {
                 var hit = hits[i];
@@ -87,13 +94,39 @@ public class GridMoveComponent : MonoBehaviour
                 {
                     if (!push.Push(velocity))
                     {
-                        moveable = false;
+                        moveable = 0;
+                        /*
+                        if ((hit.rigidbody.position - (Vector2)transform.position).magnitude < velocity.magnitude &&
+                        (hit.rigidbody.position - (Vector2)transform.position).magnitude > 1)
+                        {
+                            moveable = 2;
+                            velocity = hit.rigidbody.position - (Vector2)transform.position;
+                            if (velocity.y != 0)
+                                velocity.y += -Math.Sign(velocity.y) * hit.collider.bounds.size.y;
+                            else
+                                velocity.x += -Math.Sign(velocity.x) * hit.collider.bounds.size.x;
+                            if (velocity == Vector3.zero)
+                                moveable = 0;
+                        }
+                        */
                         break;
                     }
                 }
                 else if (hit.gameObject.TryGetComponent<StopComponent>(out var stop))
                 {
-                    moveable = false;
+                    moveable = 0;
+                    /*
+                    if ((hit.rigidbody.position - (Vector2)transform.position).magnitude < velocity.magnitude &&
+                        (hit.rigidbody.position - (Vector2)transform.position).magnitude > 1)
+                    {
+                        moveable = 2;
+                        velocity = hit.rigidbody.position - (Vector2)transform.position;
+                        if (velocity.y != 0)
+                            velocity.y += -Math.Sign(velocity.y) * hit.collider.bounds.size.y;
+                        else 
+                            velocity.x += -Math.Sign(velocity.x) * hit.collider.bounds.size.x;
+                    }
+                    */
                     break;
                 }
                 //else if (hit.gameObject.TryGetComponent<Player>(out var player))
@@ -106,17 +139,17 @@ public class GridMoveComponent : MonoBehaviour
                 //    }
                 //}
             }
-            if (!moveable)
+            if (moveable == 0)
             {
                 velocity = Vector3.zero;
-                return false;
+                return 0;
             }
             else
             {
-                return true;
+                return 1;
             }
         }
-        return true;
+        return 1;
     }
 
     private void Move()
@@ -129,9 +162,14 @@ public class GridMoveComponent : MonoBehaviour
         {
             MoveTarget = moveCurr + Velocity;
             Velocity = Vector3.zero;
-        }
+        }  
         moveCurr = Vector3.MoveTowards(moveCurr, MoveTarget, MoveSpeed * Time.deltaTime);
+        //moveCurr = Vector3.Lerp(moveCurr, MoveTarget, 0.5f);
         rigidbody.MovePosition(moveCurr);
+        if (moveCurr == MoveTarget)
+        {
+            undoing = false;
+        }
     }
 
     public bool TryMove(Vector3 velocity)
@@ -142,7 +180,7 @@ public class GridMoveComponent : MonoBehaviour
             return false;
         if (Vector3.Distance(moveCurr, MoveTarget) > 0f)
             return false;
-        if (!CollisionHandling(ref velocity))
+        if (CollisionHandling(ref velocity) == 0)
             return false;
         Moved = true;
         if (Velocity != velocity)
@@ -206,6 +244,7 @@ public class GridMoveComponent : MonoBehaviour
         yield return new WaitForSecondsRealtime(MoveDelay);
         if (!undoing)
             UndoManager.Instance.NextTurn();
+        TurnEnded?.Invoke(this, null);
         undoing = false;
         DelayMoveCoroutine = null;
         CanMove = true;

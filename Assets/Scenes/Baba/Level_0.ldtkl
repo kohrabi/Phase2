@@ -454,7 +454,7 @@
 				},
 				{
 					"__identifier": "FlagBox",
-					"__grid": [20,6],
+					"__grid": [18,6],
 					"__pivot": [0.5,0.5],
 					"__tags": ["Name"],
 					"__tile": { "tilesetUid": 18, "x": 1, "y": 1, "w": 24, "h": 24 },
@@ -463,14 +463,14 @@
 					"width": 16,
 					"height": 16,
 					"defUid": 19,
-					"px": [328,104],
+					"px": [296,104],
 					"fieldInstances": [],
-					"__worldX": 296,
+					"__worldX": 264,
 					"__worldY": 88
 				},
 				{
 					"__identifier": "Is",
-					"__grid": [21,6],
+					"__grid": [19,6],
 					"__pivot": [0.5,0.5],
 					"__tags": ["Is"],
 					"__tile": { "tilesetUid": 5, "x": 1, "y": 1, "w": 24, "h": 24 },
@@ -479,14 +479,14 @@
 					"width": 16,
 					"height": 16,
 					"defUid": 9,
-					"px": [344,104],
+					"px": [312,104],
 					"fieldInstances": [],
-					"__worldX": 312,
+					"__worldX": 280,
 					"__worldY": 88
 				},
 				{
 					"__identifier": "WinText",
-					"__grid": [22,6],
+					"__grid": [20,6],
 					"__pivot": [0.5,0.5],
 					"__tags": ["Rule"],
 					"__tile": { "tilesetUid": 23, "x": 1, "y": 1, "w": 24, "h": 24 },
@@ -495,9 +495,9 @@
 					"width": 16,
 					"height": 16,
 					"defUid": 24,
-					"px": [360,104],
+					"px": [328,104],
 					"fieldInstances": [],
-					"__worldX": 328,
+					"__worldX": 296,
 					"__worldY": 88
 				},
 				{
@@ -723,6 +723,22 @@
 					"fieldInstances": [],
 					"__worldX": 408,
 					"__worldY": 136
+				},
+				{
+					"__identifier": "Wall",
+					"__grid": [17,3],
+					"__pivot": [0.5,0.5],
+					"__tags": ["Tile"],
+					"__tile": { "tilesetUid": 14, "x": 1, "y": 1, "w": 24, "h": 24 },
+					"__smartColor": "#3E2731",
+					"iid": "f4632b40-4ce0-11ef-9499-fb6d46f5dcb2",
+					"width": 16,
+					"height": 16,
+					"defUid": 13,
+					"px": [280,56],
+					"fieldInstances": [],
+					"__worldX": 248,
+					"__worldY": 40
 				}
 			]
 		}

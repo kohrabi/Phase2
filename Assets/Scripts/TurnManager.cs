@@ -15,11 +15,14 @@ public class TurnManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+
     private ChaseComponent[] _chaseObjects;
 
 
     private void Start()
     {
+        GridMoveComponent.Moved = false;
+        GridMoveComponent.CanMove = true;
         Player.PlayerMove += ChaseObjectMove;
     }
 
