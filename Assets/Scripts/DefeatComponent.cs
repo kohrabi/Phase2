@@ -15,10 +15,7 @@ public class DefeatComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            transform.position += Vector3.up;
-        }
+
     }
 
     public void OnCollisionEnter2D(Collision2D collision)
