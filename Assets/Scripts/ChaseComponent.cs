@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [RequireComponent(typeof(GridMoveComponent))]
@@ -9,8 +7,6 @@ public class ChaseComponent : MonoBehaviour
     private GridMoveComponent gridMove;
     [SerializeField] public Vector2 BoxSize = new Vector2(1f, 1f);
     [SerializeField] private new BoxCollider2D collider;
-
-    [SerializeField] private GameObject player;
 
     private void Start()
     {
@@ -24,6 +20,7 @@ public class ChaseComponent : MonoBehaviour
         if (!GridMoveComponent.CanMove)
             return;
         move = FindBestMove();
+        TurnManager.Instance.OccupiedPos.Add(move);
         gridMove.TryMove(move);
     }
 
@@ -42,10 +39,26 @@ public class ChaseComponent : MonoBehaviour
     }
 
     private int count = 0;
+
     private Vector2 FindBestMove()
     {
+        GameObject target = null;
+        float minDis = Mathf.Infinity;
+        foreach (var player in TurnManager.Instance.Players)
+        {
+            float dis = Vector3.Distance(player.transform.position, gridMove.MoveTarget);
+            if (dis < minDis)
+            {
+                minDis = dis;
+                target = player;
+            }
+        }
+
+        if (target == null)
+            return Vector2.zero;
+
         Vector2 start = gridMove.MoveTarget;
-        Vector2 end = player.transform.position;
+        Vector2 end = target.transform.position;
 
         List<Node> openList = new List<Node>();
         HashSet<Node> closedList = new HashSet<Node>();
@@ -99,7 +112,7 @@ public class ChaseComponent : MonoBehaviour
             }
         }
 
-        return Vector2.zero; // Return zero if no path is found
+        return Vector2.zero;
     }
 
     private Vector2 RetracePath(Node startNode, Node endNode)
@@ -128,6 +141,9 @@ public class ChaseComponent : MonoBehaviour
 
     private bool IsMoveable(Vector2 position)
     {
+        if (TurnManager.Instance.OccupiedPos.Contains(position))
+            return false;
+
         List<Collider2D> colliders = detectGameObjects(position);
         int i = 0;
         for (; i < colliders.Count; i++)
@@ -136,7 +152,6 @@ public class ChaseComponent : MonoBehaviour
                 return true;
             if (colliders[i].gameObject.CompareTag("RuleBox")) break;
             if (!colliders[i].gameObject.TryGetComponent<PushableComponent>(out var pushable)) break;
-            //if (colliders[i].gameObject.CompareTag("Wall")) break;
         }
 
         return i >= colliders.Count;

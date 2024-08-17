@@ -17,18 +17,41 @@ public class TurnManager : MonoBehaviour
 
 
     private ChaseComponent[] _chaseObjects;
+    public List<GameObject> Players { get; private set; }
+    public List<Vector2> OccupiedPos = new List<Vector2>();
 
 
     private void Start()
     {
+        InitPlayerList();
         GridMoveComponent.Moved = false;
         GridMoveComponent.CanMove = true;
         Player.PlayerMove += ChaseObjectMove;
     }
 
+    private void FixedUpdate()
+    {
+        OccupiedPos.Clear();
+    }
+
     private void OnDestroy()
     {
         Player.PlayerMove -= ChaseObjectMove;
+    }
+
+    private void InitPlayerList()
+    {
+        Players = new List<GameObject>();
+        Player[] players = GameObject.FindObjectsOfType<Player>();
+        foreach (var player in players)
+        {
+            Players.Add(player.gameObject);
+        }
+    }
+
+    public void ChangePlayerList(GameObject[] pList)
+    {
+        Players = new List<GameObject>(pList);
     }
 
     private void ChaseObjectMove()

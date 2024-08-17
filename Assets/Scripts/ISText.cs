@@ -166,8 +166,10 @@ public class ISText : MonoBehaviour
 
 
    public static void AddComponentToObjects(string tag, Type componentType)
-    {
+   {
         var objects = GameObject.FindGameObjectsWithTag(tag);
+        if (componentType == typeof(Player))
+            TurnManager.Instance.ChangePlayerList(objects);
         foreach (var obj in objects)
         {
             obj.AddComponent(componentType);
